@@ -1,0 +1,744 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Fluxo de Caixa- Thecontroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="recuros/assets/images/icon/favicon.icon.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/slicknav.min.css">
+    <!-- amcharts css -->
+
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="../../recuros/assetscss/typography.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/default-css.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/styles.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../recuros/assets/css/responsive.css">
+    <link rel="stylesheet" href="../../recuros/assets/style/table.css">
+    <!-- modernizr css -->
+    <script src="../../recuros/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(1) th {
+        padding: 8px;
+        color: #fff;
+        background-color: #0069D9;
+    }
+
+    tr:nth-child(2) th {
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    th.totalano {
+        background-color: #0069D9;
+        color: white;
+
+    }
+
+    thead th {
+        background-color: #f5f5f5;
+        text-align: center;
+    }
+
+    .subcategory {
+        background-color: #f9f9f9;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .category {
+        cursor: pointer;
+        background-color: #A9D5FFFF;
+    }
+
+    .category i {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .category i.fa-minus-circle {
+        transform: rotate(180deg);
+    }
+
+    /* Modern Filter Section */
+    .filters-section {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+
+    .filters-section .row {
+        margin: 0 -12px;
+        align-items: flex-end;
+    }
+
+    .filters-section .col-md-2 {
+        padding: 0 12px;
+    }
+
+    .filter-group {
+        margin-bottom: 0;
+    }
+
+    .filter-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .filter-input {
+        width: 100%;
+        padding: 10px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #333;
+        transition: all 0.2s ease;
+        background: #f8f9fa;
+    }
+
+    .filter-input:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        outline: none;
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 12px;
+        height: 100%;
+        align-items: flex-end;
+    }
+
+    .btn-filter {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        height: 42px;
+    }
+
+    .btn-filter-primary {
+        background: #0066cc;
+        color: white;
+        border: none;
+    }
+
+    .btn-filter-primary:hover {
+        background: #0052a3;
+    }
+
+    .btn-filter-secondary {
+        background: #f8f9fa;
+        color: #333;
+        border: 1px solid #e0e0e0;
+    }
+
+    .btn-filter-secondary:hover {
+        background: #e9ecef;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .filters-section {
+            padding: 16px;
+        }
+
+        .filters-section .row {
+            flex-direction: column;
+        }
+
+        .filters-section .col-md-2 {
+            margin-bottom: 16px;
+        }
+
+        .filter-buttons {
+            margin-top: 16px;
+        }
+
+        .btn-filter {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    /* Modern Table Styles */
+    .table-modern {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .table-modern thead th {
+        background: #f8f9fa;
+        color: #1a1a1a;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 16px;
+        text-align: left;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .table-modern thead tr:first-child th {
+        background: #0066cc;
+        color: white;
+        font-size: 15px;
+        padding: 20px 16px;
+    }
+
+    .table-modern tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .table-modern tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .table-modern td {
+        padding: 16px;
+        border-bottom: 1px solid #e9ecef;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .table-modern .category {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .table-modern .category:hover {
+        background-color: #e9ecef;
+    }
+
+    .table-modern .category i {
+        margin-right: 8px;
+        color: #0066cc;
+        transition: transform 0.2s ease;
+    }
+
+    .table-modern .category i.fa-minus-circle {
+        transform: rotate(180deg);
+    }
+
+    .table-modern .subcategory {
+        background-color: #ffffff;
+    }
+
+    .table-modern .subcategory td:first-child {
+        padding-left: 40px;
+        color: #666;
+    }
+
+    .table-modern td:not(:first-child) {
+        text-align: right;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 13px;
+    }
+
+    .table-modern tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* DataTable Customization */
+    .dataTables_wrapper .dataTables_length select {
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+    }
+
+    .dataTables_wrapper .dataTables_info {
+        color: #666;
+        font-size: 13px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 8px 16px;
+        margin: 0 4px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+        color: #333 !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #0066cc !important;
+        color: white !important;
+        border-color: #0066cc;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #e9ecef !important;
+        border-color: #e0e0e0;
+    }
+
+    /* Card Styles */
+    .card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 24px;
+    }
+
+    .card-body {
+        padding: 24px;
+    }
+
+    /* Responsive Table */
+    @media (max-width: 768px) {
+        .table-modern {
+            display: block;
+            overflow-x: auto;
+        }
+
+        .table-modern td,
+        .table-modern th {
+            min-width: 120px;
+        }
+
+        .table-modern td:first-child,
+        .table-modern th:first-child {
+            position: sticky;
+            left: 0;
+            background: #fff;
+            z-index: 1;
+        }
+
+        .table-modern thead th:first-child {
+            background: #0066cc;
+            color: white;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+       
+
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../../recuros/assets/images/logo.png" alt="logo">
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="../../painel.html" aria-expanded="true">
+                                    <i class="fa fa-tachometer-alt"></i><span>Painel</span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-address-book"></i><span>Cadastro</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="../projetos/index.html"><i class="fa fa-file-alt mr-2"></i>Projetos</a>
+                                    </li>
+                                    <li><a href="../plano_de_planos/planos-de-contas.html"><i class="fa fa-university mr-2"></i>Plano
+                                            de
+                                            Contas</a></li>
+                                    <li><a href="../clinetes/index.html"><i class="fa fa-users mr-2"></i>Clientes</a>
+                                    </li>
+                                    <li><a href="../fornecedores/index.html"><i
+                                                class="fa fa-truck mr-2"></i>Fornecedores</a>
+                                    </li>
+                                    <li><a href="../meus_bancos/index.html"><i class="fa fa-university mr-2"></i>Contas
+                                            Bancárias</a></li>
+                                    <li><a href="../meio_de_pagamento/index.html"><i
+                                                class="fa fa-credit-card mr-2"></i>Meios de Pagamento</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-invoice-dollar"></i><span>Lançamentos</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="../contas_a_receber/index.html"><i
+                                                class="fa fa-arrow-circle-down mr-2"></i>Contas
+                                            a Receber</a></li>
+                                    <li><a href="../conta_a_pagar/index.html"><i class="fa fa-arrow-circle-up mr-2"></i>
+                                            Contas a Pagar</a></li>
+
+                                    <li><a href="../transferencias/index.html"><i
+                                                class="fa fa-random mr-2"></i>Transferências</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-alt"></i>
+                                    <span>Relatórios</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="../fluxo_de_caixa_mensal/index.html"><i
+                                                class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
+                                    <li class="active"><a href="../comparador/index.html"><i class="fa fa-wallet mr-2"></i>
+                                            Comparador</a></li>
+                                </ul>
+                            </li>
+                            <!--  <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-exchange-alt mr-1"></i>
+                                    <span>Conciliação Bancária</span>
+                                </a>
+                            </li> -->
+                            <!--   <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-chart-line mr-1"></i>
+                                    <span>Planejamento Financeiro</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="../perfil/index.html" aria-expanded="true">
+                                    <i class="fa fa-users"></i><span>Perfil</span>
+                                </a>
+
+                            </li>
+
+
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li class="">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button"
+                                        data-toggle="dropdown">
+                                        <div class="avatar-circle">
+                                            <span class="initials" id="userInitials"></span>
+                                        </div>
+                                        <span class="username text-lowercase" id="usernamesistem"></span>
+                                        <span class="system-time" id="systemTime"></span>
+                                        <i class="fas fa-chevron-down ms-2"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user-circle me-2"></i> Perfil
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#" id="logoutButton">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Terminar Sessão
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="breadcrumbs-area clearfix p-3">
+                            <h4 class="page-title pull-left text-uppercase">Comparador</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end align-items-center">
+                    <div class="col-12">
+                        <div class="filters-section">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="filter-group">
+                                        <label class="filter-label">Período A</label>
+                                        <input type="date" class="filter-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="filter-group">
+                                        <label class="filter-label">Período B</label>
+                                        <input type="date" class="filter-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="filter-group">
+                                        <label class="filter-label">Período C</label>
+                                        <input type="date" class="filter-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="filter-group">
+                                        <label class="filter-label">Período D</label>
+                                        <input type="date" class="filter-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="filter-buttons">
+                                        <button class="btn-filter btn-filter-primary">
+                                            <i class="fas fa-search"></i>
+                                            Buscar
+                                        </button>
+                                        <button class="btn-filter btn-filter-secondary">
+                                            <i class="fas fa-print"></i>
+                                            Imprimir
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="dataTable3s" class="table-modern">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Conta</th>
+                                        <th colspan="4">Período A</th>
+                                        <th colspan="4">Período B</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+    <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+            <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
+            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+        </ul>
+        <div class="offset-content tab-content">
+
+        </div>
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="../../recuros/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="../../recuros/assets/js/popper.min.js"></script>
+    <script src="../../recuros/assets/js/bootstrap.min.js"></script>
+    <script src="../../recuros/assets/js/owl.carousel.min.js"></script>
+    <script src="../../recuros/assets/js/metisMenu.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slicknav.min.js"></script>
+
+
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <!-- others plugins -->
+    <script src="../../recuros/assets/js/plugins.js"></script>
+    <script src="../../recuros/assets/js/scripts.js"></script>
+    <script type="module" src="../../recuros/api/relatorios_CF/comparador.js" type="module"></script>
+
+
+    <script>
+    $(document).ready(function() {
+        if ($.fn.DataTable.isDataTable('#dataTable3')) {
+            $('#dataTable3').DataTable().destroy();
+        }
+
+        $('#dataTable3').DataTable({
+            language: {
+                decimal: ",",
+                thousands: ".",
+                lengthMenu: "Mostrar _MENU_ registros por página",
+                zeroRecords: "Nenhum registro encontrado",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(filtrado de _MAX_ registros no total)",
+                search: "Pesquisar:",
+                paginate: {
+                    first: "Primeiro",
+                    last: "Último",
+                    next: "Próximo",
+                    previous: "Anterior"
+                }
+            },
+            columnDefs: [{
+                    orderable: false,
+                    targets: '_all'
+                } // Desativa a ordenação para todas as colunas
+            ]
+        });
+
+        // Remover as classes de ordenação após inicializar o DataTable
+        $('#dataTable3 th').removeClass('sorting sorting_asc sorting_desc');
+    });
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function toggleSubcontas(category) {
+            const categoryId = category.dataset.category;
+            const icon = category.querySelector("i");
+            const isExpanded = icon.classList.contains("fa-minus-circle");
+
+            icon.classList.toggle("fa-plus-circle");
+            icon.classList.toggle("fa-minus-circle");
+
+            document.querySelectorAll(`tr[data-parent='${categoryId}']`).forEach(subconta => {
+                subconta.style.display = isExpanded ? "none" : "table-row";
+            });
+        }
+
+        function generateOrderedList() {
+            let count = 1; // Contador para categorias
+            let subCount = {}; // Objeto para contar as subcontas dentro de cada categoria
+
+            // Enumerando categorias
+            document.querySelectorAll(".category").forEach(category => {
+                const categoryId = category.dataset.category;
+                const firstCell = category.querySelector("td:first-child");
+
+                // Define o número da categoria no texto
+                firstCell.innerHTML =
+                    `<i class="fa fa-plus-circle"></i> ${count}. ${firstCell.innerText.trim().replace(/^\d+\.\s/, '')}`;
+
+                subCount[categoryId] = 1; // Inicia contador de subcontas para esta categoria
+                count++; // Incrementa a contagem das categorias
+            });
+
+            // Enumerando subcategorias (subcontas)
+            document.querySelectorAll(".subcategory").forEach(subconta => {
+                const parentId = subconta.dataset.parent;
+                if (subCount[parentId] !== undefined) {
+                    const firstCell = subconta.querySelector("td:first-child");
+
+                    // Define o número da subconta no texto
+                    firstCell.innerHTML =
+                        `${parentId}.${subCount[parentId]} ${firstCell.innerText.trim().replace(/^\d+\.\d+\s/, '')}`;
+
+                    subCount[parentId]++; // Incrementa a contagem das subcontas
+                }
+            });
+        }
+
+        // Adicionando eventos para expandir/recolher categorias ao clicar
+        document.querySelectorAll(".category").forEach(category => {
+            category.addEventListener("click", function(e) {
+                e.preventDefault();
+                toggleSubcontas(this);
+            });
+        });
+
+        generateOrderedList(); // Gera a numeração ao carregar a página
+    });
+    </script>
+</body>
+
+</html>

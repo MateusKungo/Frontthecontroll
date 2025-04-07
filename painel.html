@@ -1,0 +1,1240 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Resumo Geral- thecontrolls</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="recuros/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="recuros/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="recuros/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="recuros/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="recuros/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="recuros/assets/css/slicknav.min.css">
+
+    <link rel="stylesheet" href="recuros/header/style.css">
+
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="recuros/assets/css/typography.css">
+    <link rel="stylesheet" href="recuros/assets/css/default-css.css">
+    <link rel="stylesheet" href="recuros/assets/css/styles.css">
+    <link rel="stylesheet" href="recuros/assets/css/responsive.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="chartsBanco/fluxocaixa.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- modernizr css -->
+    <script src="recuros/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Variáveis de cores e estilos */
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #858796;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+            --card-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            --transition-speed: 0.3s;
+        }
+
+        /* Estilos Gerais */
+        body {
+            background-color: #f8f9fc;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 0.35rem;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 2rem rgba(58, 59, 69, 0.2);
+        }
+
+        .cardcolor {
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .cardcolor:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Cores vibrantes e alegres para os cards */
+        .card-1 {
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+        }
+
+        .card-2 {
+            background: linear-gradient(135deg, #1cc88a 0%, #169b6b 100%);
+        }
+
+        .card-3 {
+            background: linear-gradient(135deg, #36b9cc 0%, #258391 100%);
+        }
+
+        .card-4 {
+            background: linear-gradient(135deg, #f6c23e 0%, #dda20a 100%);
+        }
+
+        .card-5 {
+            background: linear-gradient(135deg, #e74a3b 0%, #be2617 100%);
+        }
+
+        .card-6 {
+            background: linear-gradient(135deg, #858796 0%, #6b6d7d 100%);
+        }
+
+        .card-7 {
+            background: linear-gradient(135deg, #5a5c69 0%, #37384e 100%);
+        }
+
+        .card-8 {
+            background: linear-gradient(135deg, #2c9faf 0%, #1a7a8c 100%);
+        }
+
+        /* Ícones e Cores */
+        .iconbg {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-speed);
+        }
+
+        .card:hover .iconbg {
+            transform: scale(1.1);
+        }
+
+        .colorIcon {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Títulos e Textos */
+        .titlecolor {
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .text-white {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Tabelas */
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background-color: var(--light-color);
+            border-bottom: 2px solid #e3e6f0;
+            color: var(--dark-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .table tbody tr {
+            transition: background-color var(--transition-speed);
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(78, 115, 223, 0.05);
+        }
+
+        /* Botões */
+        .btn {
+            border-radius: 0.35rem;
+            padding: 0.375rem 0.75rem;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .settings-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            transition: all var(--transition-speed);
+        }
+
+        .settings-btn:hover {
+            background-color: #224abe;
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(78, 115, 223, 0.2);
+        }
+
+        /* Gráficos */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            background: white;
+            border-radius: 0.35rem;
+            padding: 1rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .card {
+                margin-bottom: 1rem;
+            }
+
+            .iconbg {
+                width: 40px;
+                height: 40px;
+            }
+
+            .titlecolor {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Modal */
+        .modal-content {
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 2rem rgba(58, 59, 69, 0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #224abe 100%);
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        /* Tabs */
+        .nav-tabs {
+            border-bottom: 2px solid #e3e6f0;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            transition: all var(--transition-speed);
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* Formulários */
+        .form-control {
+            border-radius: 0.35rem;
+            border: 1px solid #d1d3e2;
+            padding: 0.375rem 0.75rem;
+            transition: all var(--transition-speed);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #224abe;
+        }
+
+        /* Floating Scroll Button */
+        .scroll-down-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-down-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-down-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: #333333;
+        }
+
+        .scroll-down-btn i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            color: white;
+        }
+
+        .scroll-down-btn:hover i {
+            transform: translateY(3px);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .scroll-down-btn.animate {
+            animation: bounce 2s infinite;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="recuros/assets/images/logo.png" alt="logo">
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="#" aria-expanded="true">
+                                    <i class="fa fa-tachometer-alt"></i><span>Painel</span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-address-book"></i><span>Cadastro</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="views/projetos/index.html"><i class="fa fa-file-alt mr-2"></i>Projetos</a>
+                                    </li>
+                                    <li><a href="views/plano_de_planos/planos-de-contas.html"><i class="fa fa-university mr-2"></i>Plano
+                                            de
+                                            Contas</a></li>
+                                    <li><a href="views/clientes.html"><i class="fa fa-users mr-2"></i>Clientes</a>
+                                    </li>
+                                    <li><a href="views/fornecedores.html"><i
+                                                class="fa fa-truck mr-2"></i>Fornecedores</a>
+                                    </li>
+                                    <li><a href="views/meus-bancos.html"><i class="fa fa-university mr-2"></i>Contas
+                                            Bancárias</a></li>
+                                    <li><a href="views/meio-de-pagemento.html"><i
+                                                class="fa fa-credit-card mr-2"></i>Meios de Pagamento</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-invoice-dollar"></i><span>Lançamentos</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="views/contas_a_receber/index.html"><i
+                                                class="fa fa-arrow-circle-down mr-2"></i>Contas
+                                            a Receber</a></li>
+                                    <li><a href="views/conta_a_pagar/index.html"><i class="fa fa-arrow-circle-up mr-2"></i>
+                                            Contas a Pagar</a></li>
+
+                                    <li><a href="views/transferencias/index.html"><i
+                                                class="fa fa-random mr-2"></i>Transferências</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-alt"></i>
+                                    <span>Relatórios</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="views/fluxodecaixamensal.html"><i
+                                                class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
+                                    <li class="active"><a href="views/comparador/index.html"><i class="fa fa-wallet mr-2"></i>
+                                            Comparador</a></li>
+                                </ul>
+                            </li>
+                            <!--  <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-exchange-alt mr-1"></i>
+                                    <span>Conciliação Bancária</span>
+                                </a>
+                            </li> -->
+                            <!--   <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-chart-line mr-1"></i>
+                                    <span>Planejamento Financeiro</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="views/usuarios.html" aria-expanded="true">
+                                    <i class="fa fa-users"></i><span>Perfil</span>
+                                </a>
+
+                            </li>
+
+
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li class="">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button"
+                                        data-toggle="dropdown">
+                                        <div class="avatar-circle">
+                                            <span class="initials" id="userInitials"></span>
+                                        </div>
+                                        <span class="username text-lowercase" id="usernamesistem"></span>
+                                        <span class="system-time" id="systemTime"></span>
+                                        <i class="fas fa-chevron-down ms-2"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user-circle me-2"></i> Perfil
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#" id="logoutButton">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Terminar Sessão
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-area">
+                <div class="row d-flex align-items-center justify-content-between p-2">
+                    <div>
+                        <h4>Painel</h4>
+                        <span class="text-secondary" id="empresaname"></span>
+                    </div>
+                    <button class="btn settings-btn btn-secondary"><i class="fas fa-filter"></i> Filtrar
+                        Relatório</button>
+                </div>
+                <div class="row align-items-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <div class="alert alert-info alert-dismissible fade none" role="alert">
+                                <strong>Atenção!</strong> Sua conta está prestes a expirar.
+                                Faltam <span id="countdown">10 dias</span> para o vencimento.
+                                Não se preocupe, você ainda pode <a href="#" class="alert-link">renovar agora</a> e
+                                continuar aproveitando nossos serviços sem interrupções. 😊
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            </div> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner mt-2">
+                <div class="row mt-2 p-1 ">
+                    <h6 class="text-muted">Analise Financeira</h6>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column">
+                            <!-- Resultado Líquido -->
+                            <div class="card shadow-sm cardcolor card-1 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Resultado Líquido</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Resultado Operacional -->
+                            <div class="card shadow-sm cardcolor card-2 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Resultado Operacional</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Receitas -->
+                            <div class="card shadow-sm cardcolor card-3 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Receitas</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Custo Variável -->
+                            <div class="card shadow-sm cardcolor card-4 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Custo Variável</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column">
+                            <!-- Margem de Lucro -->
+                            <div class="card shadow-sm cardcolor card-5 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Margem de Lucro</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Despesas Fixas -->
+                            <div class="card shadow-sm cardcolor card-6 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Despesas Fixas</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Loan -->
+                            <div class="card shadow-sm cardcolor card-7 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Loan</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Investimentos -->
+                            <div class="card shadow-sm cardcolor card-8 mb-3">
+                                <div class="card-body p-3">
+                                    <div>
+                                        <div class="titlecolor">
+                                            <span class="text-white">Investimentos</span>
+                                        </div>
+                                        <h6 id="moedaPais" class="text-white mb-0"></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- Gráficos e outras informações podem ser colocados aqui -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Saldo Em Contas</h4>
+                                <div class="table-responsive">
+                                    <table class="table text-left" id="listabancoDashBord">
+                                        <thead class="text-uppercase ">
+                                            <tr style="background-color: #fff;">
+                                                <th scope="col">Nome do Banco</th>
+                                                <th scope="col">Saldo</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Os dados serão inseridos aqui -->
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <h6 class="text-muted mb-3">Contas a Pagar</h6>
+                        <!-- Contas a Pagar Card 1 -->
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-danger me-2">Vencimento: 15/03/2024</span>
+                                            <span class="badge bg-warning">Urgente</span>
+                                        </div>
+                                        <h5 class="mb-2">Fornecedor ABC</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted">Categoria:</small>
+                                                <span class="ms-1">Materiais</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Qtd:</small>
+                                                <span class="ms-1">3</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Valor Total:</small>
+                                            <h4 class="text-danger mb-0">R$ 1.500,00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iconbg bg-danger">
+                                        <i class="fas fa-file-invoice-dollar text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contas a Pagar Card 2 -->
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-danger me-2">Vencimento: 20/03/2024</span>
+                                            <span class="badge bg-info">Normal</span>
+                                        </div>
+                                        <h5 class="mb-2">Serviços XYZ</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted">Categoria:</small>
+                                                <span class="ms-1">Serviços</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Qtd:</small>
+                                                <span class="ms-1">2</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Valor Total:</small>
+                                            <h4 class="text-danger mb-0">R$ 2.300,00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iconbg bg-danger">
+                                        <i class="fas fa-file-invoice-dollar text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contas a Pagar Card 3 -->
+                        <div class="card shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-danger me-2">Vencimento: 25/03/2024</span>
+                                            <span class="badge bg-success">Regular</span>
+                                        </div>
+                                        <h5 class="mb-2">Aluguel</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted">Categoria:</small>
+                                                <span class="ms-1">Despesas Fixas</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Qtd:</small>
+                                                <span class="ms-1">1</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Valor Total:</small>
+                                            <h4 class="text-danger mb-0">R$ 3.000,00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iconbg bg-danger">
+                                        <i class="fas fa-file-invoice-dollar text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h6 class="text-muted mb-3">Contas a Receber</h6>
+                        <!-- Contas a Receber Card 1 -->
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-success me-2">Vencimento: 10/03/2024</span>
+                                            <span class="badge bg-warning">Atrasado</span>
+                                        </div>
+                                        <h5 class="mb-2">Cliente A</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted">Categoria:</small>
+                                                <span class="ms-1">Vendas</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Qtd:</small>
+                                                <span class="ms-1">2</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Valor Total:</small>
+                                            <h4 class="text-success mb-0">R$ 4.500,00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iconbg bg-success">
+                                        <i class="fas fa-hand-holding-usd text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contas a Receber Card 2 -->
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-success me-2">Vencimento: 18/03/2024</span>
+                                            <span class="badge bg-info">Normal</span>
+                                        </div>
+                                        <h5 class="mb-2">Cliente B</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted">Categoria:</small>
+                                                <span class="ms-1">Serviços</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Qtd:</small>
+                                                <span class="ms-1">1</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Valor Total:</small>
+                                            <h4 class="text-success mb-0">R$ 2.800,00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iconbg bg-success">
+                                        <i class="fas fa-hand-holding-usd text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contas a Receber Card 3 -->
+                        <div class="card shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-success me-2">Vencimento: 28/03/2024</span>
+                                            <span class="badge bg-success">Regular</span>
+                                        </div>
+                                        <h5 class="mb-2">Cliente C</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted">Categoria:</small>
+                                                <span class="ms-1">Vendas</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted">Qtd:</small>
+                                                <span class="ms-1">3</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Valor Total:</small>
+                                            <h4 class="text-success mb-0">R$ 3.500,00</h4>
+                                        </div>
+                                    </div>
+                                    <div class="iconbg bg-success">
+                                        <i class="fas fa-hand-holding-usd text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h6 class="text-muted">Prazos médio da Empresa</h6>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <!-- Prazo médio de Recebimento -->
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-2">Prazo médio de Recebimento</h6>
+                                        <h3 class="mb-0" id="prazoRecebimento">0 dias</h3>
+                                    </div>
+                                    <div class="iconbg bg-primary">
+                                        <i class="fas fa-clock text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prazo médio de Pagamentos -->
+                        <div class="card shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted mb-2">Prazo médio de Pagamentos</h6>
+                                        <h3 class="mb-0" id="prazoPagamento">0 dias</h3>
+                                    </div>
+                                    <div class="iconbg bg-danger">
+                                        <i class="fas fa-money-bill-wave text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+
+                        <!-- Evolução de Saldo-Caixa -->
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h6 class="mb-3">Evolução de Saldo-Caixa</h6>
+                                <div id="evolucaoSaldoCaixaChart" class="w-100" style="height: 200px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <!-- Charts Row 1 -->
+                <div class="row mt-3">
+                    <!-- Maiores Despesas -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body p-3 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0">Maiores Despesas</h6>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-light dropdown-toggle" type="button"
+                                            id="despesasDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-filter"></i> Filtro
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right"
+                                            aria-labelledby="despesasDropdown">
+                                            <a class="dropdown-item" href="#" data-period="7">Últimos 7 dias</a>
+                                            <a class="dropdown-item" href="#" data-period="30">Últimos 30 dias</a>
+                                            <a class="dropdown-item" href="#" data-period="90">Últimos 90 dias</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="maioresDespesasChart" class="flex-grow-1"
+                                    style="min-height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fluxo de Caixa -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body p-3 d-flex flex-column">
+                                <h6 class="mb-2">Fluxo de Caixa</h6>
+                                <div id="fluxoCaixaChart" class="flex-grow-1" style="min-height: 300px; width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 2 -->
+                <div class="row mt-3">
+                    <!-- Analise de Lucratividade -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body p-3 d-flex flex-column">
+                                <h6 class="mb-2">Analise de Lucratividade</h6>
+                                <div id="profitabilityChart" class="flex-grow-1"
+                                    style="min-height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ponto de Equilíbrio -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body p-3 d-flex flex-column">
+                                <h6 class="mb-2">Ponto de Equilíbrio</h6>
+                                <div id="breakEvenChart" class="flex-grow-1" style="min-height: 300px; width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Floating Scroll Button -->
+    <div class="scroll-down-btn" id="scrollDownBtn">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!--Extra Modal Ideial-->
+
+    <!-- Modal Filtros -->
+    <div class="modal fade" id="modalFiltros" tabindex="-1" role="dialog" aria-labelledby="modalFiltrosLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFiltrosLabel">Filtros do Painel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Período</label>
+                                <select class="form-control" id="filterPeriodo">
+                                    <option value="hoje">Hoje</option>
+                                    <option value="ontem">Ontem</option>
+                                    <option value="7dias">Últimos 7 dias</option>
+                                    <option value="30dias">Últimos 30 dias</option>
+                                    <option value="personalizado">Personalizado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="datepickerContainer" style="display: none;">
+                            <div class="form-group">
+                                <label>Intervalo de Datas</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" id="dataInicio">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">até</span>
+                                    </div>
+                                    <input type="date" class="form-control" id="dataFim">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Categoria</label>
+                                <select class="form-control" id="filterCategoria" multiple>
+                                    <option value="receitas">Receitas</option>
+                                    <option value="despesas">Despesas</option>
+                                    <option value="investimentos">Investimentos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Centro de Custo</label>
+                                <select class="form-control" id="filterCentroCusto" multiple>
+                                    <option value="administrativo">Administrativo</option>
+                                    <option value="comercial">Comercial</option>
+                                    <option value="operacional">Operacional</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="aplicarFiltros">Aplicar Filtros</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide date picker based on period selection
+        document.getElementById('filterPeriodo').addEventListener('change', function () {
+            const datepickerContainer = document.getElementById('datepickerContainer');
+            datepickerContainer.style.display = this.value === 'personalizado' ? 'block' : 'none';
+        });
+
+        // Connect filter button to modal
+        document.querySelector('.settings-btn').addEventListener('click', function () {
+            $('#modalFiltros').modal('show');
+        });
+
+        // Scroll Button Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollBtn = document.getElementById('scrollDownBtn');
+            const scrollIcon = scrollBtn.querySelector('i');
+            let isAnimating = true;
+
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.add('visible');
+                    scrollIcon.classList.remove('fa-chevron-down');
+                    scrollIcon.classList.add('fa-chevron-up');
+                    if (isAnimating) {
+                        scrollBtn.classList.add('animate');
+                    }
+                } else {
+                    scrollBtn.classList.remove('visible');
+                    scrollBtn.classList.remove('animate');
+                    scrollIcon.classList.remove('fa-chevron-up');
+                    scrollIcon.classList.add('fa-chevron-down');
+                }
+            });
+
+            // Smooth scroll when clicking the button
+            scrollBtn.addEventListener('click', function () {
+                isAnimating = false;
+                scrollBtn.classList.remove('animate');
+
+                if (window.scrollY > 300) {
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Scroll down
+                    window.scrollTo({
+                        top: window.scrollY + 800,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Restart animation after scrolling
+                setTimeout(() => {
+                    isAnimating = true;
+                    if (window.scrollY > 300) {
+                        scrollBtn.classList.add('animate');
+                    }
+                }, 1000);
+            });
+        });
+    </script>
+
+    <script src="recuros/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="recuros/js/popper.min.js"></script>
+    <script src="recuros/assets/js/bootstrap.min.js"></script>
+    <script src="recuros/assets/js/owl.carousel.min.js"></script>
+    <script src="recuros/assets/js/metisMenu.min.js"></script>
+    <script src="recuros/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="recuros/assets/js/jquery.slicknav.min.js"></script>
+    <!-- start chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- start highcharts js -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!-- start amcharts -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <!-- all line chart activation -->
+    <script src="recuros/assets/js/line-chart.js"></script>
+    <!-- all pie chart -->
+    <script src="recuros/assets/js/pie-chart.js"></script>
+    <!-- all bar chart -->
+    <script src="recuros/assets/js/bar-chart.js"></script>
+    <!-- all map chart -->
+    <script src="recuros/assets/js/maps.js"></script>
+
+    <!-- others plugins -->
+    <script src="recuros/assets/js/plugins.js"></script>
+    <script src="recuros/assets/js/scripts.js"></script>
+    <script src="recuros/assets/js/line-chart.js"></script>
+    <script src="recuros/chartfluxocaixa/chartFluxoCaixa.js"></script>
+    <script src="recuros/chartsBanco/fluxodecaixa.js"></script>
+    <script src="recuros/chartsBanco/maiordespedas.js"></script>
+    <script src="recuros/chartsBanco/pontodeEquilbrio.js"></script>
+    <script src="recuros/chartsBanco/analiseLucratividade.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="recuros/'api/utility/dadoslocal.js"></script>
+    <!--Busca na api-->
+    <script src="recuros/api/dashbordapi/listabancos.js"></script>
+    <script src="recuros/api/utility/dadosusario.js"></script>
+    <script src="recuros/api/checkstatus/statussecurity.js"></script>
+    <script type="module" src="recuros/'api/login/seguraca.js"></script>
+    <script src="recuros/header/script.js"></script>
+    <script>
+        // Data de vencimento (ajuste conforme necessário)z
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 10); // Definido para 10 dias a partir de agora
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = expirationDate - now;
+
+            if (timeLeft <= 0) {
+                // Mensagem de conta expirada
+                document.querySelector('.alert').innerHTML = `
+                <strong>Ops!</strong> Sua conta expirou, mas não se preocupe!
+                Você pode <a href="#" class="alert-link">renovar agora</a> e voltar a usar nossos serviços. Estamos aqui para ajudar! 😊
+            `;
+                return;
+            }
+
+            // Calcula dias, horas, minutos e segundos restantes
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Atualiza o texto da contagem regressiva
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.textContent = `${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
+        }
+
+        // Atualiza a contagem regressiva a cada segundo
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Chama imediatamente para exibir o tempo restante
+    </script>
+</body>
+
+</html>

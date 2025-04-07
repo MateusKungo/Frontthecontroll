@@ -1,0 +1,380 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Contas- Thecontroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/metisMenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css') }}">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- amcharts css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <!-- modernizr css -->
+    <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+    th.sorting,
+    th.sorting_asc,
+    th.sorting_desc {
+        background-image: none !important;
+        /* Remove os ícones */
+    }
+    </style>
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        @include('sidebar._menu')
+        <div class="main-content">
+        @include('sidebar._header')
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left text-uppercase">Contas</h4>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class=" pull-right mt-4 p-4">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+
+
+                <div class="row">
+                    <div class="col mt-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home"
+                                            role="tab" aria-controls="home" aria-selected="true">Contas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                                            role="tab" aria-controls="profile" aria-selected="false">Sub Contas</a>
+                                    </li>
+
+                                </ul>
+                                <div class="tab-content mt-3" id="myTabContent">
+
+                                    <div class="tab-pane fade active show" id="home" role="tabpanel"
+                                        aria-labelledby="home-tab">
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-6">
+                                                <div class="breadcrumbs-area clearfix">
+                                                    <h4 class="page-title pull-left text-uppercase">Contas</h4>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 clearfix">
+                                                <div class=" pull-right mt-4">
+                                                    <button class="btn btn-secondary mb-3" type="button"
+                                                        data-toggle="modal" data-target=".bd-example-modal-lg"><i
+                                                            class="fa fa-user-plus mr-md-2"></i>Contas</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data-tables  table-responsive">
+                                            <table id="dataTable3"
+                                                class="text-left dataTable no-footer dtr-inline collapsed dataTableContas">
+                                                <thead class="text-uppercase bg-light">
+                                                    <tr>
+                                                        <th>Codigo</th>
+                                                        <th>Nome da Conta</th>
+                                                        <th>TIpo de Conta</th>
+                                                        <th>Descrição</th>
+                                                        <th>Status</th>
+                                                        <th>Opções</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel"
+                                        aria-labelledby="profile-tab">
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-6">
+                                                <div class="breadcrumbs-area clearfix">
+                                                    <h4 class="page-title pull-left text-uppercase">Sub COntas</h4>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 clearfix">
+                                                <div class=" pull-right mt-4">
+                                                    <button class="btn btn-primary mb-3 btn-secondary" type="button"
+                                                        data-toggle="modal" data-target="#subcontaModal">
+                                                        <i class="fa fa-user-plus mr-md-2"></i> SubContas
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="data-tables  table-responsive">
+                                                <table id="dataTable3"
+                                                    class="text-left dataTable no-footer dtr-inline collapsed dataTableSubContas">
+                                                    <thead class="text-uppercase bg-light">
+                                                        <tr>
+                                                            <th>Codigo</th>
+                                                            <th>Nome da Conta</th>
+                                                            <th>SubConta</th>
+                                                            <th>Descrição</th>
+                                                            <th>Status</th>
+                                                            <th>Opções</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- large modal start -->
+        <div class="modal fade bd-example-modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title text-uppercase">Cadastro de Contas</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <form class="modal-body col-12" id="userFormPost">
+                    <div class="form-group mb-3">
+                            <h6 class="mb-3">Tipo de Conta</h6>
+                            <select class="form-control" id="tipoConta">
+
+                                <option>Receita</option>
+                                <option>custo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="mb-3">Nome da Conta</h6>
+                            <input type="text" class="form-control" id="nomeConta" aria-describedby="emailHelp"
+                                placeholder="Nome do Usuário" required>
+                            <!-- <small id="emailHelp" class="form-text text-muted">
+                                .</small> -->
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Descrição</h6>
+
+                            <textarea name="descricaoProjecto" id="descricaoConta" class="form-control"
+                                required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn bg-lightsbtn" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-secondary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="editProjectoModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h5 class="modal-title  text-uppercase" id="editUserModalLabel">Editar Projeto</h5>
+                        <button type="button" class="close text-white"
+                            data-bs-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <form id="editProjectoForm" class="modal-body">
+
+                        <input type="hidden" name="projectoId" id="editProjectoId">
+                        <div class="mb-3">
+                            <label for="editNomeProjecto" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="editNomeProjecto" name="nomeProjecto" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editDescricaoProjecto" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="editDescricaoProjecto" name="descricaoProjecto"
+                                required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade" id="subcontaModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title text-uppercase">Cadastro de SubContas</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <form class="modal-body col-12" id="userFormPost">
+                        <div class="form-group mb-3">
+                            <h6>Conta</h6>
+                            <select class="form-control" id="contaSelect" required>
+                                <option value="">Selecione uma conta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Nome da SubConta</h6>
+                            <input type="text" class="form-control" id="nomeSubConta" placeholder="Nome da SubConta"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <h6>Descrição</h6>
+                            <textarea name="descricaoSubConta" id="descricaoSubConta" class="form-control"
+                                required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-light" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" id="salvarSubConta">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+    <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+
+        </ul>
+        <div class="offset-content tab-content">
+            <div id="activity" class="tab-pane fade in show active">
+                <div class="recent-activity">
+
+                </div>
+            </div>
+            <div id="settings" class="tab-pane fade">
+                <div class="offset-settings">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
+    <!-- bootstrap 4 js -->
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
+
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <!-- others plugins -->
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script type="module" src="{{asset('api/contas/postContas.js')}}"></script>
+    <script src="{{asset('api/contas/listaContas.js')}}"></script>
+    <script src="{{asset('api/contas/postsubconta.js')}}"></script>
+    <script src="{{asset('api/contas/listasubconta.js')}}"></script>
+
+    <script>
+    $(document).ready(function() {
+        if ($.fn.DataTable.isDataTable('#dataTable3')) {
+            $('#dataTable3').DataTable().destroy();
+        }
+
+        $('#dataTable3').DataTable({
+            language: {
+                decimal: ",",
+                thousands: ".",
+                lengthMenu: "Mostrar _MENU_ registros por página",
+                zeroRecords: "Nenhum registro encontrado",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(filtrado de _MAX_ registros no total)",
+                search: "Pesquisar:",
+                paginate: {
+                    first: "Primeiro",
+                    last: "Último",
+                    next: "Próximo",
+                    previous: "Anterior"
+                }
+            },
+            columnDefs: [{
+                    orderable: false,
+                    targets: '_all'
+                } // Desativa a ordenação para todas as colunas
+            ]
+        });
+
+        // Remover as classes de ordenação após inicializar o DataTable
+        $('#dataTable3 th').removeClass('sorting sorting_asc sorting_desc');
+    });
+    </script>
+
+</body>
+
+</html>

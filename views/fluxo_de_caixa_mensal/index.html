@@ -1,0 +1,536 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Fluxo de Caixa- Thecontroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="../../recuros/assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="../../recuros/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/slicknav.min.css">
+    <!-- amcharts css -->
+
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="../../recuros/assets/css/typography.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/default-css.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/styles.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../recuros/assets/css/responsive.css">
+    <link rel="stylesheet" href="../../recuros/assetsstyle/table.css">
+    <!-- modernizr css -->
+    <script src="../../recuros/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(1) th {
+        padding: 8px;
+        color: #fff;
+        background-color: #0069D9;
+    }
+
+    tr:nth-child(2) th {
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    th.totalano {
+        background-color: #0069D9;
+        color: white;
+
+    }
+
+    thead th {
+        background-color: #f5f5f5;
+        text-align: center;
+    }
+
+    .subcategory {
+        background-color: #f9f9f9;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .category {
+        cursor: pointer;
+        background-color: #A9D5FFFF;
+    }
+
+    .category i {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .category i.fa-minus-circle {
+        transform: rotate(180deg);
+    }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        @include('sidebar._menu')
+        <div class="main-content">
+        @include('sidebar._header')
+            <div class="page-title-area">
+                <div class="row justify-content-end align-items-center">
+                    <div class="col-12">
+                        <div class="row justify-content-end align-items-center mt-3 d-flex">
+                            <div class="col-md-2">
+                                <h6 class="mb-2 text-secondary text-uppercase">Período A</h6>
+                                <select class="form-control" id="type" required>
+                                    <option value="">Selecione</option>
+                                    <option value="despesa">Ver apenas realizado</option>
+                                    <option value="reembolso">Ver esperado e realizado</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <h6 class="mb-2 text-secondary text-uppercase">Centro de custo</h6>
+                                <select class="form-control" id="type" required>
+                                    <option value="">Selecione</option>
+                                    <option value="despesa">Ver apenas realizado</option>
+                                    <option value="reembolso">Ver esperado e realizado</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <h6 class="mb-2 text-secondary text-uppercase">Projecto</h6>
+                                <select class="form-control" id="type" required>
+                                    <option value="">Selecione</option>
+                                    <option value="despesa">Ver apenas realizado</option>
+                                    <option value="reembolso">Ver esperado e realizado</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <h6 class="mb-2  text-uppercase">Período </h6>
+                                    <input type="month" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group mt-0">
+                                    <h6 class="mb-2 text-white text-uppercase">e</h6>
+                                    <button class="form-control btn btn-secondary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group mt-0">
+                                    <h6 class="mb-2 text-white text-uppercase">e</h6>
+                                    <button class="btn btn-outline-dark">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="breadcrumbs-area clearfix p-3 ">
+                            <h4 class="page-title pull-left text-uppercase">Fluxo de Caixa Mensal</h4>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <div class="card col-12 mt-2">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="dataTable3s" class="text-left no-footer dtr-inline collapsed">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="5" width="400">Conta</th>
+                                        <th colspan="4">Janeiro</th>
+                                        <th colspan="4">Fevereiro</th>
+                                        <th colspan="4">Março</th>
+                                        <th colspan="4">Abril</th>
+                                        <th colspan="4">Maio</th>
+                                        <th colspan="4">Junho</th>
+                                        <th colspan="4">Julho</th>
+                                        <th colspan="4">Agosto</th>
+                                        <th colspan="4">Setembro</th>
+                                        <th colspan="4">Outubro</th>
+                                        <th colspan="4">Novembro</th>
+                                        <th colspan="4">Dezembro</th>
+                                        <th colspan="4">Total Ano</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+                                        <th>Total</th>
+                                        <th>Média</th>
+                                        <th>AV</th>
+                                        <th>AH</th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Receitas -->
+                                    <tr class="category" data-category="1">
+                                        <td
+                                            style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            <i class="fa fa-plus-circle"></i> Receita Bruta
+                                        </td>
+                                        <td>850.000,00</td>
+                                        <td>283.333,33</td>
+                                        <td>100%</td>
+                                        <td>15,2%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+
+                                    </tr>
+                                    <tr class="subcategory" data-parent="1" style="display: none;">
+                                        <td
+                                            style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            Vendas de Produtos</td>
+                                        <td>650.000,00</td>
+                                        <td>216.666,67</td>
+                                        <td>76,5%</td>
+                                        <td>12,8%</td>
+                                        <td>750.000,00</td>
+                                        <td>250.000,00</td>
+                                        <td>76,5%</td>
+                                        <td>15,4%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                        <td>980.000,00</td>
+                                        <td>326.666,67</td>
+                                        <td>100%</td>
+                                        <td>15,3%</td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+    <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+            <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
+            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+        </ul>
+        <div class="offset-content tab-content">
+
+        </div>
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="../../recuros/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="../../recuros/assets/js/popper.min.js"></script>
+    <script src="../../recuros/assets/js/bootstrap.min.js"></script>
+    <script src="../../recuros/assets/js/owl.carousel.min.js"></script>
+    <script src="../../recuros/assets/js/metisMenu.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="../../recuros/assetsassets/js/jquery.slicknav.min.js"></script>
+
+
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <!-- others plugins -->
+    <script src="../../recuros/assets/js/plugins.js"></script>
+    <script src="../../recuros/assets/js/scripts.js"></script>
+
+
+    <script>
+    $(document).ready(function() {
+        if ($.fn.DataTable.isDataTable('#dataTable3')) {
+            $('#dataTable3').DataTable().destroy();
+        }
+
+        $('#dataTable3').DataTable({
+            language: {
+                decimal: ",",
+                thousands: ".",
+                lengthMenu: "Mostrar _MENU_ registros por página",
+                zeroRecords: "Nenhum registro encontrado",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(filtrado de _MAX_ registros no total)",
+                search: "Pesquisar:",
+                paginate: {
+                    first: "Primeiro",
+                    last: "Último",
+                    next: "Próximo",
+                    previous: "Anterior"
+                }
+            },
+            columnDefs: [{
+                    orderable: false,
+                    targets: '_all'
+                } // Desativa a ordenação para todas as colunas
+            ]
+        });
+
+        // Remover as classes de ordenação após inicializar o DataTable
+        $('#dataTable3 th').removeClass('sorting sorting_asc sorting_desc');
+    });
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function toggleSubcontas(category) {
+            const categoryId = category.dataset.category;
+            const icon = category.querySelector("i");
+            const isExpanded = icon.classList.contains("fa-minus-circle");
+
+            icon.classList.toggle("fa-plus-circle");
+            icon.classList.toggle("fa-minus-circle");
+
+            document.querySelectorAll(`tr[data-parent='${categoryId}']`).forEach(subconta => {
+                subconta.style.display = isExpanded ? "none" : "table-row";
+            });
+        }
+
+        function generateOrderedList() {
+            let count = 1; // Contador para categorias
+            let subCount = {}; // Objeto para contar as subcontas dentro de cada categoria
+
+            // Enumerando categorias
+            document.querySelectorAll(".category").forEach(category => {
+                const categoryId = category.dataset.category;
+                const firstCell = category.querySelector("td:first-child");
+
+                // Define o número da categoria no texto
+                firstCell.innerHTML =
+                    `<i class="fa fa-plus-circle"></i> ${count}. ${firstCell.innerText.trim().replace(/^\d+\.\s/, '')}`;
+
+                subCount[categoryId] = 1; // Inicia contador de subcontas para esta categoria
+                count++; // Incrementa a contagem das categorias
+            });
+
+            // Enumerando subcategorias (subcontas)
+            document.querySelectorAll(".subcategory").forEach(subconta => {
+                const parentId = subconta.dataset.parent;
+                if (subCount[parentId] !== undefined) {
+                    const firstCell = subconta.querySelector("td:first-child");
+
+                    // Define o número da subconta no texto
+                    firstCell.innerHTML =
+                        `${parentId}.${subCount[parentId]} ${firstCell.innerText.trim().replace(/^\d+\.\d+\s/, '')}`;
+
+                    subCount[parentId]++; // Incrementa a contagem das subcontas
+                }
+            });
+        }
+
+        // Adicionando eventos para expandir/recolher categorias ao clicar
+        document.querySelectorAll(".category").forEach(category => {
+            category.addEventListener("click", function(e) {
+                e.preventDefault();
+                toggleSubcontas(this);
+            });
+        });
+
+        generateOrderedList(); // Gera a numeração ao carregar a página
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header,
+section,
+footer {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+.report-header {
+    text-align: center;
+    background: #007bff;
+    color: white;
+    padding: 30px 20px;
+}
+
+.report-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.report-header p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+/* Filtros */
+.filters h2 {
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+label {
+    flex: 1 1 200px;
+}
+
+select,
+button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Tabela */
+.report-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.report-table th,
+.report-table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.report-table th {
+    background: #007bff;
+    color: white;
+}
+
+.report-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.total-row {
+    font-weight: bold;
+    background: #f1f1f1;
+}
+
+/* Rodapé */
+.report-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+/* Estilo para A.V, A.H e variação */
+.report-table th,
+.report-table td {
+    text-align: center;
+}
+
+.report-table th {
+    background: #007bff;
+    color: white;
+}
+
+.report-table .total-row {
+    font-weight: bold;
+    background: #f1f1f1;
+}
+
+.report-table td.positive {
+    color: green;
+    font-weight: bold;
+}
+
+.report-table td.negative {
+    color: red;
+    font-weight: bold;
+}
+
+th .sorting,
+th .sorting_asc,
+th .sorting_desc {
+    display: none !important;
+}
+
+

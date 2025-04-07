@@ -1,0 +1,553 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Plano de Contas - Thecontroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="../../recuros/assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="../../recuros/assets/css/bootstrap.min.css'">
+    <link rel="stylesheet" href="../../recuros/assets/css/font-awesome.min.css'">
+    <link rel="stylesheet" href="../../recuros/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/slicknav.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- amcharts css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+
+    <!-- Start datatable css -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="../../recuros/assets/css/typography.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/default-css.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/styles.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/custumer.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/responsive.css">
+
+    <link rel="stylesheet" href="../../recuros/header/style.css">
+    <!-- modernizr css -->
+    <script src="../../recuros/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap JS (inclui Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="page-container">
+
+
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../../recuros/assets/images/logo.png" alt="logo">
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="../../painel.html" aria-expanded="true">
+                                    <i class="fa fa-tachometer-alt"></i><span>Painel</span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-address-book"></i><span>Cadastro</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="../projetos/index.html"><i class="fa fa-file-alt mr-2"></i>Projetos</a>
+                                    </li>
+                                    <li><a href="../plano_de_planos/planos-de-contas.html"><i
+                                                class="fa fa-university mr-2"></i>Plano
+                                            de
+                                            Contas</a></li>
+                                    <li><a href="../clinetes/index.html"><i class="fa fa-users mr-2"></i>Clientes</a>
+                                    </li>
+                                    <li><a href="../fornecedores/index.html"><i
+                                                class="fa fa-truck mr-2"></i>Fornecedores</a>
+                                    </li>
+                                    <li><a href="../meus_bancos/index.html"><i class="fa fa-university mr-2"></i>Contas
+                                            Bancárias</a></li>
+                                    <li><a href="../meio_de_pagamento/index.html"><i
+                                                class="fa fa-credit-card mr-2"></i>Meios de Pagamento</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-invoice-dollar"></i><span>Lançamentos</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="../contas_a_receber/index.html"><i
+                                                class="fa fa-arrow-circle-down mr-2"></i>Contas
+                                            a Receber</a></li>
+                                    <li><a href="../conta_a_pagar/index.html"><i class="fa fa-arrow-circle-up mr-2"></i>
+                                            Contas a Pagar</a></li>
+
+                                    <li><a href="../transferencias/index.html"><i
+                                                class="fa fa-random mr-2"></i>Transferências</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-alt"></i>
+                                    <span>Relatórios</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="../fluxo_de_caixa_mensal/index.html"><i
+                                                class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
+                                    <li class="active"><a href="../comparador/index.html"><i
+                                                class="fa fa-wallet mr-2"></i>
+                                            Comparador</a></li>
+                                </ul>
+                            </li>
+                            <!--  <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-exchange-alt mr-1"></i>
+                                    <span>Conciliação Bancária</span>
+                                </a>
+                            </li> -->
+                            <!--   <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-chart-line mr-1"></i>
+                                    <span>Planejamento Financeiro</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="../perfil/index.html" aria-expanded="true">
+                                    <i class="fa fa-users"></i><span>Perfil</span>
+                                </a>
+
+                            </li>
+
+
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li class="">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button"
+                                        data-toggle="dropdown">
+                                        <div class="avatar-circle">
+                                            <span class="initials" id="userInitials"></span>
+                                        </div>
+                                        <span class="username text-lowercase" id="usernamesistem"></span>
+                                        <span class="system-time" id="systemTime"></span>
+                                        <i class="fas fa-chevron-down ms-2"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user-circle me-2"></i> Perfil
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#" id="logoutButton">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Terminar Sessão
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="page-title-area">
+                <div class="row align-items-center pt-3">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title">Plano de Contas</h4>
+                            <p class="text-muted mb-0">Gerencie suas contas e subcontas</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="buttons-container">
+                            <!--   <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAdicionarConta">
+                                <i class="fas fa-plus me-2"></i>Nova Conta
+                            </button> -->
+                            <button class="btn btn-secondary" onclick="gerarPDF()">
+                                <i class="fas fa-file-pdf me-2"></i>Exportar PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+
+
+                <div class="row">
+                    <div class="col mt-2">
+
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-md-4">
+                                        <label for="filtro-tipo" class="form-label mb-2">Filtrar por Tipo</label>
+                                        <select id="filtro-tipo" class="form-control" onchange="carregarContas()">
+                                            <option value="todos">Todos os tipos</option>
+                                            <option value="Entrada">Entradas</option>
+                                            <option value="Saída">Saídas</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Plano de Contas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="contas-body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Adicionar Conta -->
+        <div class="modal fade" id="modalAdicionarConta" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Categoria de Contas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAdicionarConta">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Categoria</label>
+                                <input type="text" class="form-control" id="nome" required
+                                    placeholder="Digite o nome da conta">
+                            </div>
+                            <div class="modal-footer px-0 pb-0">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-secondary">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+    <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+
+        </ul>
+        <div class="offset-content tab-content">
+            <div id="activity" class="tab-pane fade in show active">
+                <div class="recent-activity">
+
+                </div>
+            </div>
+            <div id="settings" class="tab-pane fade">
+                <div class="offset-settings">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="../../recuros/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="../../recuros/assets/js/popper.min.js"></script>
+    <script src="../../recuros/assets/js/bootstrap.min.js"></script>
+    <script src="../../recuros/assets/js/owl.carousel.min.js"></script>
+    <script src="../../recuros/assets/js/metisMenu.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <!-- others plugins -->
+    <script src="../../recuros/assets/js/plugins.js"></script>
+    <script src="../../recuros/assets/js/scripts.js"></script>
+    <script src="../../recuros/api/contas/postContas.js" type="module"></script>
+    <script src="../../recuros/api/planoconta/planoconta.js" type="module"></script>
+    <script src="../../recuros/api/checkstatus/statussecurity.js" type="module"></script>
+    <script src="../../recuros/api/custumerdatatable/custudatatable.js" type="module"></script>
+    <script src="../../recuros/header/script.js"></script>
+
+    <script>
+        // Melhorias na interatividade
+        document.addEventListener('DOMContentLoaded', function () {
+            // Feedback visual ao carregar
+            const showLoading = () => {
+                document.querySelector('.card-body').classList.add('loading');
+            };
+
+            const hideLoading = () => {
+                document.querySelector('.card-body').classList.remove('loading');
+            };
+
+            // Feedback visual para ações bem-sucedidas
+            const showSuccess = (element) => {
+                element.classList.add('success-feedback');
+                setTimeout(() => {
+                    element.classList.remove('success-feedback');
+                }, 1000);
+            };
+
+            // Animação suave ao adicionar novos itens
+            const addWithAnimation = (element) => {
+                element.classList.add('fade-enter');
+                requestAnimationFrame(() => {
+                    element.classList.add('fade-enter-active');
+                    setTimeout(() => {
+                        element.classList.remove('fade-enter', 'fade-enter-active');
+                    }, 300);
+                });
+            };
+
+            // Melhorar feedback dos formulários
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.addEventListener('focus', () => {
+                        input.closest('.mb-3')?.classList.add('focused');
+                    });
+
+                    input.addEventListener('blur', () => {
+                        input.closest('.mb-3')?.classList.remove('focused');
+                    });
+                });
+            });
+
+            // Tooltip para botões de ação
+            const actionButtons = document.querySelectorAll('.action-buttons button');
+            actionButtons.forEach(button => {
+                const title = button.querySelector('i')?.getAttribute('class').includes('edit') ? 'Editar' :
+                    button.querySelector('i')?.getAttribute('class').includes('trash') ? 'Excluir' :
+                        button.querySelector('i')?.getAttribute('class').includes('plus') ? 'Adicionar Subconta' : '';
+                if (title) {
+                    button.setAttribute('title', title);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Função para mostrar alertas personalizados
+        function showAlert(message, type = 'success') {
+            const alert = document.createElement('div');
+            alert.className = `custom-alert alert-${type}`;
+            alert.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        `;
+            document.body.appendChild(alert);
+
+            // Remove o alerta após 3 segundos com animação
+            setTimeout(() => {
+                alert.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    alert.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Adicionar os listeners para os formulários
+        document.addEventListener('DOMContentLoaded', function () {
+            // Form de adicionar conta
+            const formAdicionarConta = document.getElementById('formAdicionarConta');
+            formAdicionarConta?.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                try {
+                    // Sua lógica existente de salvar
+                    await salvarConta(); // Assumindo que esta função já existe
+                    showAlert('Conta cadastrada com sucesso!');
+                    // Fechar o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalAdicionarConta'));
+                    modal.hide();
+                } catch (error) {
+                    showAlert('Erro ao cadastrar conta. Tente novamente.', 'error');
+                }
+            });
+
+            // Form de adicionar subconta
+            const formAdicionarSubconta = document.getElementById('formAdicionarSubconta');
+            formAdicionarSubconta?.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                try {
+                    // Sua lógica existente de salvar
+                    await salvarSubconta(); // Assumindo que esta função já existe
+                    showAlert('Subconta cadastrada com sucesso!');
+                    // Fechar o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalAdicionarSubconta'));
+                    modal.hide();
+                } catch (error) {
+                    showAlert('Erro ao cadastrar subconta. Tente novamente.', 'error');
+                }
+            });
+
+            // Adicionar listener para edição
+            document.addEventListener('contaEditada', function () {
+                showAlert('Conta atualizada com sucesso!');
+            });
+
+            document.addEventListener('subcontaEditada', function () {
+                showAlert('Subconta atualizada com sucesso!');
+            });
+        });
+    </script>
+
+    <script>
+        // Função para aplicar as classes de cores nas contas
+        function aplicarCoresContas() {
+            const contas = document.querySelectorAll('.lista-contas > li');
+            contas.forEach(conta => {
+                const tipo = conta.getAttribute('data-tipo');
+                if (tipo === 'Entrada') {
+                    conta.classList.add('conta-entrada');
+                } else if (tipo === 'Saída') {
+                    conta.classList.add('conta-saida');
+                }
+
+                // Adiciona o indicador de tipo
+                const contaNome = conta.querySelector('.conta-nome');
+                if (contaNome && !contaNome.querySelector('.tipo-indicador')) {
+                    const indicador = document.createElement('span');
+                    indicador.className = `tipo-indicador tipo-${tipo.toLowerCase()}`;
+                    indicador.textContent = tipo;
+                    contaNome.appendChild(indicador);
+                }
+            });
+
+            // Aplicar cores nas subcontas
+            const subcontas = document.querySelectorAll('.sublista > li');
+            subcontas.forEach(subconta => {
+                const tipoPai = subconta.closest('.lista-contas > li').getAttribute('data-tipo');
+                if (tipoPai === 'Entrada') {
+                    subconta.classList.add('subconta-entrada');
+                } else if (tipoPai === 'Saída') {
+                    subconta.classList.add('subconta-saida');
+                }
+            });
+        }
+
+        // Chamar a função quando o DOM estiver pronto e após carregar as contas
+        document.addEventListener('DOMContentLoaded', function () {
+            // Observar mudanças na tabela de contas
+            const observer = new MutationObserver(function (mutations) {
+                aplicarCoresContas();
+            });
+
+            const contasBody = document.getElementById('contas-body');
+            observer.observe(contasBody, { childList: true, subtree: true });
+        });
+    </script>
+
+    <!-- Atualizar a estrutura HTML das contas -->
+    <script>
+        // Função para criar o HTML de uma conta
+        function criarHTMLConta(conta) {
+            return `
+            <li data-tipo="${conta.tipo}" class="conta-item">
+                <div class="conta-nome">
+                    <span class="conta-texto">${conta.nome}</span>
+                    <div class="action-buttons">
+                        <button onclick="editarConta(${conta.id})" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="excluirConta(${conta.id})" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button onclick="adicionarSubconta(${conta.id})" title="Adicionar Subconta">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <ul class="sublista">
+                    ${conta.subcontas.map(subconta => `
+                        <li class="subconta-item">
+                            <div class="conta-nome">
+                                <span class="conta-texto">${subconta.nome}</span>
+                                <div class="action-buttons">
+                                    <button onclick="editarSubconta(${subconta.id})" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="excluirSubconta(${subconta.id})" title="Excluir">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    `).join('')}
+                </ul>
+            </li>
+        `;
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+{
+    "contas": [
+      {
+        "nome": "Receita/Faturamento",
+        "tipo": "Entrada",
+        "subcontas": [
+          {
+            "nome": "Receita com Produtos",
+            "subcontas": [
+              { "nome": "Fabricação Própria" },
+              { "nome": "Cópias" },
+              { "nome": "Receita com Reformas" }
+            ]
+          },
+          {
+            "nome": "Receita com Serviços",
+            "subcontas": [
+              { "nome": "Consultoria Start Financeiro" },
+              { "nome": "Consultoria Preço Certo" },
+              { "nome": "Imersão Preço Certo" },
+              { "nome": "Palestras" },
+              { "nome": "Cursos" },
+              { "nome": "Treinamentos" }
+            ]
+          },
+          {
+            "nome": "Receitas com Terceiros",
+            "subcontas": []
+          },
+          {
+            "nome": "Outras Receitas",
+            "subcontas": [
+              { "nome": "Cartão de Crédito" }
+            ]
+          },
+          {
+            "nome": "Entradas Não Operacionais",
+            "subcontas": [
+              { "nome": "Empréstimos obtidos" },
+              { "nome": "Juros de Aplicações" },
+              { "nome": "Capitalização dos sócios" },
+              { "nome": "Venda de equipamentos usados" },
+              { "nome": "Fretes" }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Custos Variáveis",
+        "tipo": "Saída",
+        "subcontas": [
+          {
+            "nome": "Custos Tributários ou Financeiros",
+            "subcontas": [
+              { "nome": "Simples Nacional" },
+              { "nome": "Taxas de Cartões" },
+              { "nome": "Taxas de Boleto" },
+              { "nome": "PIS" },
+              { "nome": "Confis" },
+              { "nome": "ISS" },
+              { "nome": "IPI" },
+              { "nome": "ICMS" }
+            ]
+          },
+          {
+            "nome": "Custo de Produtos",
+            "subcontas": [
+              { "nome": "Fornecedores de Insumos (Matéria Prima)" },
+              { "nome": "Fornecedores de Revenda de Produtos" }
+            ]
+          },
+          {
+            "nome": "Custos com Embalagem",
+            "subcontas": [
+              { "nome": "Custos com Sacolas" },
+              { "nome": "Copos Plásticos" }
+            ]
+          },
+          {
+            "nome": "Custos com Vendas",
+            "subcontas": [
+              { "nome": "Comissão interna" },
+              { "nome": "Comissão externa" },
+              { "nome": "Frete" }
+            ]
+          },
+          {
+            "nome": "Outros Custos Variáveis",
+            "subcontas": [
+              { "nome": "Taxas Bancárias" },
+              { "nome": "Taxa TED/DOC" },
+              { "nome": "Aluguel de Máquinas de Cartão" }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Despesas Administrativas",
+        "tipo": "Saída",
+        "subcontas": [
+          { "nome": "Água" },
+          { "nome": "Aluguel" },
+          { "nome": "Condomínio" },
+          { "nome": "Telefone + Internet" },
+          { "nome": "IPTU" },
+          { "nome": "Limpeza e Conservação" },
+          { "nome": "Energia Elétrica" },
+          { "nome": "Celular" },
+          { "nome": "Táxi / Uber" },
+          { "nome": "Almoço / Supermercado / Lanches" },
+          { "nome": "Correios" },
+          { "nome": "Mensalidade de Softwares" },
+          { "nome": "Alarme Monitorado / Segurança" }
+        ]
+      },
+      {
+        "nome": "Despesas com Pessoal",
+        "tipo": "Saída",
+        "subcontas": [
+          { "nome": "Pró-Labore" },
+          { "nome": "Salário de Funcionários" },
+          { "nome": "Bolsa de Estágio" },
+          { "nome": "Vale Transporte" },
+          { "nome": "Vale Refeição" },
+          { "nome": "INSS - Federação - Sindicato - IR" },
+          { "nome": "13º e Férias" },
+          { "nome": "FGTS" },
+          { "nome": "Plano de Saúde" }
+        ]
+      },
+      {
+        "nome": "Investimentos",
+        "tipo": "Saída",
+        "subcontas": [
+          {
+            "nome": "Investimentos em Marketing",
+            "subcontas": [
+              { "nome": "Papelaria (folder, cartão visitas, etc.)" },
+              { "nome": "Site / Internet" },
+              { "nome": "Mídias/ Propaganda" },
+              { "nome": "Realização Eventos" },
+              { "nome": "Prestadores de serviços de marketing" }
+            ]
+          },
+          {
+            "nome": "Investimentos em Bens",
+            "subcontas": [
+              { "nome": "Compra de Equipamentos de Informática" },
+              { "nome": "Reformas / Estrutura" },
+              { "nome": "Compra de Veículos" }
+            ]
+          },
+          {
+            "nome": "Investimentos em Desenvolvimento",
+            "subcontas": [
+              { "nome": "Consultorias" },
+              { "nome": "Treinamentos" }
+
+            ]
+          },
+          {
+            "nome": "Outros Investimentos",
+            "subcontas": []
+          }
+        ]
+      }
+    ]
+  }

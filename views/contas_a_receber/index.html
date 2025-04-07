@@ -1,0 +1,649 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Conta a Receber - Thecontroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="../../recuros/assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="../../recuros/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/slicknav.min.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/custumer.css">
+    <!-- amcharts css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+
+
+        <link rel="stylesheet" href="../../recuros/header/style.css">
+    
+    <!-- style css -->
+    <link rel="stylesheet" href="../../recuros/assets/css/typography.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/default-css.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/styles.css">
+    <link rel="stylesheet" href="../../recuros/assets/css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- modernizr css -->
+    <script src="../../recuros/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <div class="page-container">
+
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../../recuros/assets/images/logo.png" alt="logo">
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="../../painel.html" aria-expanded="true">
+                                    <i class="fa fa-tachometer-alt"></i><span>Painel</span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-address-book"></i><span>Cadastro</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="../projetos/index.html"><i class="fa fa-file-alt mr-2"></i>Projetos</a>
+                                    </li>
+                                    <li><a href="../plano_de_planos/planos-de-contas.html"><i class="fa fa-university mr-2"></i>Plano
+                                            de
+                                            Contas</a></li>
+                                    <li><a href="../clinetes/index.html"><i class="fa fa-users mr-2"></i>Clientes</a>
+                                    </li>
+                                    <li><a href="../fornecedores/index.html"><i
+                                                class="fa fa-truck mr-2"></i>Fornecedores</a>
+                                    </li>
+                                    <li><a href="../meus_bancos/index.html"><i class="fa fa-university mr-2"></i>Contas
+                                            Bancárias</a></li>
+                                    <li><a href="../meio_de_pagamento/index.html"><i
+                                                class="fa fa-credit-card mr-2"></i>Meios de Pagamento</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-invoice-dollar"></i><span>Lançamentos</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="../contas_a_receber/index.html"><i
+                                                class="fa fa-arrow-circle-down mr-2"></i>Contas
+                                            a Receber</a></li>
+                                    <li><a href="../conta_a_pagar/index.html"><i class="fa fa-arrow-circle-up mr-2"></i>
+                                            Contas a Pagar</a></li>
+
+                                    <li><a href="../transferencias/index.html"><i
+                                                class="fa fa-random mr-2"></i>Transferências</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-file-alt"></i>
+                                    <span>Relatórios</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="../fluxo_de_caixa_mensal/index.html"><i
+                                                class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
+                                    <li class="active"><a href="../comparador/index.html"><i class="fa fa-wallet mr-2"></i>
+                                            Comparador</a></li>
+                                </ul>
+                            </li>
+                            <!--  <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-exchange-alt mr-1"></i>
+                                    <span>Conciliação Bancária</span>
+                                </a>
+                            </li> -->
+                            <!--   <li>
+                                <a href="javascript:void(0)" aria-expanded="true">
+                                    <i class="fa fa-chart-line mr-1"></i>
+                                    <span>Planejamento Financeiro</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="../perfil/index.html" aria-expanded="true">
+                                    <i class="fa fa-users"></i><span>Perfil</span>
+                                </a>
+
+                            </li>
+
+
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+           
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li class="">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button"
+                                        data-toggle="dropdown">
+                                        <div class="avatar-circle">
+                                            <span class="initials" id="userInitials"></span>
+                                        </div>
+                                        <span class="username text-lowercase" id="usernamesistem"></span>
+                                        <span class="system-time" id="systemTime"></span>
+                                        <i class="fas fa-chevron-down ms-2"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user-circle me-2"></i> Perfil
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#" id="logoutButton">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Terminar Sessão
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left text-uppercase">Contas a Receber</h4>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class=" pull-right mt-4">
+
+                            <button class="btn btn-secondary mb-3" type="button" data-toggle="modal"
+                                data-target=".bd-example-modal-lg"><i class="fa fa-arrow-circle-right mr-md-2"></i>
+                                Adicionar Contas a Receber
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="data-tables table-responsive">
+                                    <table id="dataTable3" class="text-center  no-footer dtr-inline collapsed">
+                                        <thead class="text-uppercase  bg-light">
+                                            <tr>
+                                                <th>Código</th>
+                                                <th>Data do Documento</th>
+                                                <th>Documento</th>
+                                                <th>Número do Documento</th>
+                                                <th>Plano de Contas</th>
+                                                <th>Projetos</th>
+                                                <th>Tipo de Pagamento</th>
+                                                <th>Cliente</th>
+                                                <th>Descrição</th>
+                                                <th>Recebido pelo Banco</th>
+                                                <th>Valor</th>
+                                                <th>Frequência de Pagamento</th>
+                                                <th>Nº de Parcelas</th>
+                                                <th>Data de Vencimento</th>
+                                                <th>Data de Recebimento</th>
+                                                <th>Status</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dark table end -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal fade bd-example-modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header  bg-light">
+                        <h5 class="modal-title text-uppercase">
+                            <i class="fa fa-arrow-circle-right mr-3 "></i> Contas a Receber
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <form class="modal-body col-12" id="formcontaReceber">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Data do Documento</span>
+                                <input type="date" class="form-control" id="dataDocumento" name="dataDocumento"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h6 class="mb-2 text-secondary">Documento</h6>
+                                <select class="form-control" id="documento" name="documento">
+                                    <option value="">Selecione um Documento</option>
+                                    <option value="boleto">Boleto</option>
+                                    <option value="fatura">Fatura</option>
+                                    <option value="nf">NF</option>
+                                    <option value="transferencia">Transferência</option>
+                                    <option value="debito">Débito</option>
+                                    <option value="pix">Pix</option>
+                                    <option value="credito">Crédito</option>
+                                    <option value="dinheiro">Dinheiro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Número de Documento</span>
+                                <input type="text" class="form-control" id="ndocumento" name="ndocumento"
+                                    placeholder="Número de Documento">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Plano de Contas</span>
+                                    <span class="mb-2 text-primary"><a href="../plano_de_planos/planos-de-contas.html">Novo Plano de
+                                            Contas</a></span>
+                                </div>
+                                <select class="form-control" id="pcontas" name="pcontas" required>
+                                    <option value="">Selecina uma Conta</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Projetos</span>
+                                    <span class="mb-2 text-primary"><a href="../projetos/index.html">Novo
+                                            Projeto</a></span>
+                                </div>
+                                <select class="form-control" id="projectoId" name="projectoId" required></select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Cliente</span>
+                                    <span class="mb-2 text-primary"><a href="../clinetes/index.html">Novo
+                                            Cliente</a></span>
+                                </div>
+                                <div class="input-group">
+                                    <select class="form-control" id="clienteId" name="clienteId" required>
+                                        <option value="">Selecione um Cliente</option>
+                                        <!-- Outras opções serão preenchidas dinamicamente -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Tipo de Pagamento</span>
+                                <select class="form-control" id="tipoPagamento" name="tipoPagamento">
+                                    <option value="">Selecione</option>
+                                    <option value="avista">À Vista</option>
+                                    <option value="parcelado">Parcelado</option>
+                                    <option value="recorrente">Recorrente</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Frequência de Recorrência</span>
+                                <select class="form-control" id="frequenciaRecorrencia" name="frequenciaRecorrencia">
+                                    <option value="">Selecione</option>
+                                    <option value="diaria">Diária</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="quinzenal">Quinzenal</option>
+                                    <option value="mensal">Mensal</option>
+                                    <option value="bimestral">Bimestral</option>
+                                    <option value="trimestral">Trimestral</option>
+                                    <option value="semestral">Semestral</option>
+                                    <option value="anual">Anual</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Valor</span>
+                                <input type="text" class="form-control" id="valor" name="valor" min="0" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Nº de Parcelas</span>
+                                <input type="number" class="form-control" id="parcelas" name="parcelas" min="1"
+                                    disabled>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Recebido pelo Banco</span>
+                                    <span class="mb-2 text-primary"><a href="../meus_bancos/index.html">Novo
+                                            Banco</a></span>
+                                </div>
+                                <select class="form-control" id="recebidoPeloBancoId" name="recebidoPeloBancoId"
+                                    required></select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Descrição</span>
+                                <textarea class="form-control" id="descricao" name="descricao"
+                                    placeholder="Descrição"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Data de Vencimento</span>
+                                <input type="date" class="form-control" id="dataVencimento" name="dataVencimento"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Data de Recebimento</span>
+                                <input type="date" class="form-control" id="dataRecebimento" name="dataRecebimento">
+                            </div>
+                        </div>
+                        <input type="hidden" id="statusDePagemanto" value="Aberto">
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-lightsbtn" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-secondary">Salvar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="modalEditarContaReceber" tabindex="-1" role="dialog"
+            aria-labelledby="modalEditarContaReceberLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title text-uppercase">
+                            <i class="fa fa-edit mr-3"></i> Editar Conta a Receber
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="modal-body col-12" id="formEditarContaReceber">
+                        <input type="hidden" id="edit_contaReceberId" name="contaReceberId">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Data do Documento</span>
+                                <input type="date" class="form-control" id="edit_dataDocumento" name="dataDocumento"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h6 class="mb-2 text-secondary">Documento</h6>
+                                <select class="form-control" id="edit_documento" name="documento">
+                                    <option value="" disabled selected>Selecione um Documento</option>
+                                    <option value="boleto">Boleto</option>
+                                    <option value="fatura">Fatura</option>
+                                    <option value="nf">NF</option>
+                                    <option value="transferencia">Transferência</option>
+                                    <option value="debito">Débito</option>
+                                    <option value="pix">Pix</option>
+                                    <option value="credito">Crédito</option>
+                                    <option value="dinheiro">Dinheiro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Número de Documento</span>
+                                <input type="text" class="form-control" id="edit_ndocumento" name="ndocumento"
+                                    placeholder="Número de Documento">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Plano de Contas</span>
+                                    <span class="mb-2 text-primary"><a href="../plano_de_planos/planos-de-contas.html">Novo Plano de
+                                            Contas</a></span>
+                                </div>
+                                <select class="form-control" id="edit_pcontas" name="pcontas" required>
+                                    <option value="" disabled selected>Selecina uma Subconta</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Projetos</span>
+                                    <span class="mb-2 text-primary"><a href="../projetos/index.html">Novo
+                                            Projeto</a></span>
+                                </div>
+                                <select class="form-control" id="edit_projectoId" name="projectoId" required>
+                                    <option value="" disabled selected>Selecione um Projeto</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Cliente</span>
+                                    <span class="mb-2 text-primary"><a href="../clinetes/index.html">Novo
+                                            Cliente</a></span>
+                                </div>
+                                <div class="input-group">
+                                    <select class="form-control" id="edit_clienteId" name="clienteId" required>
+                                        <option value="" disabled selected>Selecione um Cliente</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Tipo de Pagamento</span>
+                                <select class="form-control" id="edit_tipoPagamento" name="tipoPagamento">
+                                    <option value="">Selecione</option>
+                                    <option value="avista">À Vista</option>
+                                    <option value="parcelado">Parcelado</option>
+                                    <option value="recorrente">Recorrente</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Frequência de Recorrência</span>
+                                <select class="form-control" id="edit_frequenciaRecorrencia"
+                                    name="frequenciaRecorrencia">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="diaria">Diária</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="quinzenal">Quinzenal</option>
+                                    <option value="mensal">Mensal</option>
+                                    <option value="bimestral">Bimestral</option>
+                                    <option value="trimestral">Trimestral</option>
+                                    <option value="semestral">Semestral</option>
+                                    <option value="anual">Anual</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Valor</span>
+                                <input type="text" class="form-control" id="edit_valor" name="valor" min="0" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Nº de Parcelas</span>
+                                <input type="number" class="form-control" id="edit_parcelas" name="parcelas" min="1"
+                                    disabled>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Recebido pelo Banco</span>
+                                    <span class="mb-2 text-primary"><a href="../meus_bancos/index.html">Novo
+                                            Banco</a></span>
+                                </div>
+                                <select class="form-control" id="edit_recebidoPeloBancoId" name="recebidoPeloBancoId"
+                                    required>
+                                    <option value="" disabled selected>Selecione um Banco</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Descrição</span>
+                                <textarea class="form-control" id="edit_descricao" name="descricao"
+                                    placeholder="Descrição"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Data de Vencimento</span>
+                                <input type="date" class="form-control" id="edit_dataVencimento" name="dataVencimento"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <span class="mb-2 text-secondary">Data de Recebimento</span>
+                                <input type="date" class="form-control" id="edit_dataRecebimento"
+                                    name="dataRecebimento">
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-lightsbtn" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-secondary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+    <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+            <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
+            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+        </ul>
+        <div class="offset-content tab-content">
+            <div id="activity" class="tab-pane fade in show active">
+
+            </div>
+            <div id="settings" class="tab-pane fade">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../../recuros/assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="../../recuros/assets/js/popper.min.js"></script>
+    <script src="../../recuros/assets/js/bootstrap.min.js"></script>
+    <script src="../../recuros/assets/js/owl.carousel.min.js"></script>
+    <script src="../../recuros/assets/js/metisMenu.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="../../recuros/assets/js/jquery.slicknav.min.js"></script>
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <!-- others plugins -->
+    <script src="../../recuros/assets/js/plugins.js"></script>
+    <script src="../../recuros/assets/js/scripts.js"></script>
+    <script src="../../recuros/api/contareceber/postcontareceber.js" type="module"></script>
+    <script src="../../recuros/api/contareceber/post_contareceber.js" type="module"></script>
+    <script src="../../recuros/api/contareceber/listacontarecer.js"  type="module"></script>
+    <script src="../../recuros/api/planoconta/filtrocontarecer.js"></script>
+    <script src="../../recuros/api/planoconta/listaplanodecontas.js" type="module"></script>
+    <script src="../../recurosapi/checkstatus/statussecurity.js"></script>
+    <script src="../../recuros/api/custumerdatatable/custudatatable.js"></script>
+    <script src="../../recuros/header/script.js"></script>
+
+    <script>
+    // Função para mostrar ou esconder campos de acordo com a escolha do tipo de pagamento
+    /*  document.getElementById('tipoPagamento').addEventListener('change', function() {
+         const tipoPagamento = this.value;
+
+         // Mostrar/Esconder campos dependendo do tipo de pagamento
+         if (tipoPagamento === 'parcelar') {
+             document.getElementById('parcelasDiv').style.display = 'block';
+             document.getElementById('parcelasValor').style.display = 'block';
+             document.getElementById('frequenciaPagamento').style.display = 'none';
+         } else {
+             document.getElementById('parcelasDiv').style.display = 'none';
+             document.getElementById('parcelasValor').style.display = 'none';
+             document.getElementById('frequenciaPagamento').style.display = 'block';
+         }
+     }); */
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const tipoPagamento = document.getElementById("tipoPagamento");
+        const parcelas = document.getElementById("parcelas");
+
+        tipoPagamento.addEventListener("change", function() {
+            if (tipoPagamento.value === "parcelado") {
+                parcelas.removeAttribute("disabled");
+                parcelas.value = "1"; // Define 1 como valor padrão
+            } else {
+                parcelas.setAttribute("disabled", "disabled");
+                parcelas.value = "1"; // Limpa o campo
+            }
+        });
+    });
+    </script>
+
+</body>
+
+</html>

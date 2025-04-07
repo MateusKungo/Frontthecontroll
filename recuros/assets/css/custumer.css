@@ -1,0 +1,307 @@
+:root {
+    --primary-color: #007AFF;
+    --secondary-color: #5856D6;
+    --success-color: #34C759;
+    --border-color: #E2E2E2;
+    --hover-bg: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6c757d;
+
+    /* Cores para contas de entrada */
+    --entrada-bg: #eefff5;
+    --entrada-border: #34C759;
+    --entrada-hover: #dcfce7;
+
+    /* Cores para contas de saída */
+    --saida-bg: #fff5f5;
+    --saida-border: #ff4757;
+    --saida-hover: #ffe5e5;
+
+    /* Cores para subcontas */
+    --subconta-entrada-bg: #f0fff4;
+    --subconta-saida-bg: #fff0f0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: none;
+    margin-bottom: 24px;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 10px 16px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+    outline: none;
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: var(--hover-bg);
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 16px;
+}
+
+.lista-contas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-contas > li {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.lista-contas > li.conta-entrada {
+    background-color: var(--entrada-bg);
+    border-left-color: var(--entrada-border);
+}
+
+.lista-contas > li.conta-entrada:hover {
+    background-color: var(--entrada-hover);
+    box-shadow: 0 3px 6px rgba(52, 199, 89, 0.1);
+}
+
+.lista-contas > li.conta-saida {
+    background-color: var(--saida-bg);
+    border-left-color: var(--saida-border);
+}
+
+.lista-contas > li.conta-saida:hover {
+    background-color: var(--saida-hover);
+    box-shadow: 0 3px 6px rgba(255, 71, 87, 0.1);
+}
+
+.sublista {
+    list-style: none;
+    padding: 16px 0 0 24px;
+    margin: 16px 0 0 0;
+    border-left: 2px solid var(--border-color);
+}
+
+.sublista > li {
+    background: var(--hover-bg);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.sublista > li.subconta-entrada {
+    background-color: var(--subconta-entrada-bg);
+    border-left-color: var(--entrada-border);
+}
+
+.sublista > li.subconta-saida {
+    background-color: var(--subconta-saida-bg);
+    border-left-color: var(--saida-border);
+}
+
+.action-buttons {
+    display: inline-flex;
+    gap: 8px;
+    float: right;
+}
+
+.action-buttons button {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.action-buttons button:hover {
+    background: var(--hover-bg);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-content {
+    border-radius: 12px;
+    border: none;
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+#filtro-tipo {
+    max-width: 200px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+/* Animações suaves */
+.fade-enter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Feedback visual para ações */
+.success-feedback {
+    background-color: var(--success-color) !important;
+    color: white !important;
+}
+
+/* Alert styles */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.alert-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Indicadores de tipo */
+.tipo-indicador {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.tipo-entrada {
+    background-color: var(--entrada-bg);
+    color: var(--entrada-border);
+    border: 1px solid var(--entrada-border);
+}
+
+.tipo-saida {
+    background-color: var(--saida-bg);
+    color: var(--saida-border);
+    border: 1px solid var(--saida-border);
+}
+
+/* Estilo para o texto do tipo de conta */
+.conta-nome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.conta-texto {
+    font-weight: 500;
+    flex: 1;
+}
