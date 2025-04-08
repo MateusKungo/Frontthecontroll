@@ -1,4 +1,5 @@
 import API_CONFIG from '../urlbase/url.js';
+
 document.addEventListener("DOMContentLoaded", async function () {
     const formReceber = document.querySelector("#formcontaReceber");
 
@@ -10,10 +11,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const processForm = async (form, apiUrl) => {
         const valorInput = form.querySelector("#valor");
         const parcelasInput = form.querySelector("#parcelas");
-        const frequenciaRecorrenciaInput = form.querySelector(
-            "#frequenciaRecorrencia"
-        ); // Alterado
+        const frequenciaRecorrenciaInput = form.querySelector("#frequenciaRecorrencia");
         const dataVencimentoInput = form.querySelector("#dataVencimento");
+        const dataRecebimentoInput = form.querySelector("#dataRecebimento"); // Adicionado
         let valorOriginal = parseFloat(valorInput?.value) || 0;
 
         if (valorInput && parcelasInput) {
@@ -41,21 +41,18 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
 
             const numParcelas = parseInt(parcelasInput.value) || 1;
-            const frequenciaRecorrencia = frequenciaRecorrenciaInput.value; // Alterado
+            const frequenciaRecorrencia = frequenciaRecorrenciaInput.value;
             const dataVencimentoInicial = dataVencimentoInput.value;
+            const dataRecebimento = dataRecebimentoInput.value; // Captura o valor do campo dataRecebimento
 
             const token = localStorage.getItem("authToken");
             if (!token) {
-                showAlert(
-                    "Erro de autenticação. Faça login novamente.",
-                    "error"
-                );
+                showAlert("Erro de autenticação. Faça login novamente.", "error");
                 return;
             }
 
             for (let i = 0; i < numParcelas; i++) {
                 const formData = new FormData();
-                // Adicione "statusDePagamento" na lista de campos (corrigindo a ortografia)
                 const campos = [
                     "projectoId",
                     "clienteId",
@@ -70,10 +67,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                     "descricao",
                     "valor",
                     "dataRecebimento",
-                    "statusDePagemanto", // Adicionado aqui
+                    "statusDePagemanto", // Corrigido para "statusDePagamento" se necessário, mas mantive como no original
                 ];
-
-
 
                 const camposNumericos = [
                     "projectoId",
@@ -92,29 +87,28 @@ document.addEventListener("DOMContentLoaded", async function () {
                             : elemento.value;
                         formData.append(campo, valor);
                     } else {
-                        console.warn(
-                            `⚠️ Aviso: O campo "${campo}" não foi encontrado ou está vazio.`
-                        );
+                        console.warn(`⚠️ Aviso: O campo "${campo}" não foi encontrado ou está vazio.`);
                     }
                 });
 
-                // Calcular a data de recebimento (e também a nova data de vencimento)
-                const dataRecebimento = calcularDataRecebimento(
+                // Calcular a data de vencimento para cada parcela
+                const dataVencimentoCalculada = calcularDataRecebimento(
                     dataVencimentoInicial,
                     frequenciaRecorrencia,
                     i
-                ); // Alterado
-
-                // Adicionar a data de recebimento ao FormData
-                //formData.set("", dataRecebimento);
-
-                // Adicionar a data calculada também ao campo dataVencimento
-                formData.set("dataVencimento", dataRecebimento);
-
-                console.log(
-                    "📤 Dados enviados:",
-                    Object.fromEntries(formData.entries())
                 );
+                formData.set("dataVencimento", dataVencimentoCalculada);
+
+                // Se dataRecebimento estiver preenchida, definir statusDePagemanto como "Concluido"
+                if (dataRecebimento && dataRecebimento.trim() !== "") {
+                    formData.set("statusDePagemanto", "Concluido");
+                    formData.set("dataRecebimento", dataRecebimento); // Usa a data informada no formulário
+                } else {
+                    // Se não houver dataRecebimento, não sobrescreve o campo (deixa como está ou vazio)
+                    formData.delete("statusDePagemanto"); // Remove se já foi adicionado anteriormente
+                }
+
+                console.log("📤 Dados enviados:", Object.fromEntries(formData.entries()));
                 console.log("🔑 Token:", token);
 
                 try {
@@ -153,10 +147,8 @@ function showAlert(message, type = "success") {
         icon: type,
         toast: true,
         position: "top-end",
-        //  showConfirmButton: false,
-        //timer: 3000,
     }).then(() => {
-       // location.reload();
+        // location.reload();
     });
 }
 
@@ -175,12 +167,7 @@ function preencherSelect(selectElement, items, valueKey, textKey) {
     }
 }
 
-function calcularDataRecebimento(
-    dataVencimentoInicial,
-    frequenciaRecorrencia,
-    parcela
-) {
-    // Alterado
+function calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, parcela) {
     if (!dataVencimentoInicial) {
         console.warn("Data de vencimento inicial está vazia. Retornando null.");
         return null;
@@ -189,16 +176,11 @@ function calcularDataRecebimento(
     const dataVencimento = new Date(dataVencimentoInicial);
 
     if (isNaN(dataVencimento.getTime())) {
-        console.error(
-            "Data de vencimento inicial inválida:",
-            dataVencimentoInicial
-        );
+        console.error("Data de vencimento inicial inválida:", dataVencimentoInicial);
         return null;
     }
 
-    switch (
-        frequenciaRecorrencia // Alterado
-    ) {
+    switch (frequenciaRecorrencia) {
         case "diaria":
             dataVencimento.setDate(dataVencimento.getDate() + parcela);
             break;
@@ -224,10 +206,7 @@ function calcularDataRecebimento(
             dataVencimento.setFullYear(dataVencimento.getFullYear() + parcela);
             break;
         default:
-            console.warn(
-                "Frequência de recorrência desconhecida:",
-                frequenciaRecorrencia
-            ); // Alterado
+            console.warn("Frequência de recorrência desconhecida:", frequenciaRecorrencia);
             break;
     }
 

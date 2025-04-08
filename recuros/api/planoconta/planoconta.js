@@ -436,7 +436,7 @@ async function salvarEdicaoInline(tipo, id, endpoint, data) {
     try {
         const success = await apiRequest(
             `${API_CONFIG.BASE_URL}/${endpoint}/${id}`,
-            "PUT",
+            "POST",
             data
         );
 

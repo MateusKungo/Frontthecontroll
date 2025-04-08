@@ -222,6 +222,7 @@
                                                 <th>Valor</th>
                                                 <th>Frequência de Pagamento</th>
                                                 <th>Nº de Parcelas</th>
+                                                <th>Dia de vencimento</th>
                                                 <th>Data de Vencimento</th>
                                                 <th>Data de Pagamento</th>
                                                 <th>Status</th>
@@ -362,7 +363,7 @@
                             <div class="form-group col-md-6">
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Recebido pelo Banco</span>
-                                    <span class="mb-2 text-primary"><a href="{{ route('cadastrobanco') }}">Novo
+                                    <span class="mb-2 text-primary"><a href="../../views/meus_bancos/index.html">Novo
                                             Banco</a></span>
                                 </div>
                                 <select class="form-control" id="pagoPeloBancoId" name="recebidoPeloBancoId"
@@ -388,15 +389,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <span class="mb-2 text-secondary">Status de Pagamento</span>
-                                <select name="" id="statusDePagemanto" class="form-control" required>
-                                    <option value="Aberto">Aberto</option>
-                                    <option value="Concluido">Concluido</option>
-                                </select>
-
-
-                            </div>
+                            <input type="hidden" id="statusDePagemanto" value="Aberto">
 
                         </div>
 

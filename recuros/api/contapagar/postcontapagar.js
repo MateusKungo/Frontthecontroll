@@ -1,6 +1,5 @@
 import API_CONFIG from '../urlbase/url.js';
 
-
 document.addEventListener("DOMContentLoaded", async function () {
     const formReceber = document.querySelector("#formcontaReceber");
 
@@ -12,8 +11,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const processForm = async (form, apiUrl) => {
         const valorInput = form.querySelector("#valor");
         const parcelasInput = form.querySelector("#parcelas");
-        const frequenciaRecorrenciaInput = form.querySelector("#frequenciaRecorrencia"); // Alterado
+        const frequenciaRecorrenciaInput = form.querySelector("#frequenciaRecorrencia");
         const dataVencimentoInput = form.querySelector("#dataVencimento");
+        const dataRecebimentoInput = form.querySelector("#dataRecebimento"); // Adicionado
         let valorOriginal = parseFloat(valorInput?.value) || 0;
 
         if (valorInput && parcelasInput) {
@@ -41,8 +41,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
 
             const numParcelas = parseInt(parcelasInput.value) || 1;
-            const frequenciaRecorrencia = frequenciaRecorrenciaInput.value; // Alterado
+            const frequenciaRecorrencia = frequenciaRecorrenciaInput.value;
             const dataVencimentoInicial = dataVencimentoInput.value;
+            const dataRecebimento = dataRecebimentoInput.value; // Captura o valor do campo dataRecebimento
 
             const token = localStorage.getItem("authToken");
             if (!token) {
@@ -69,15 +70,19 @@ document.addEventListener("DOMContentLoaded", async function () {
                         console.warn(`⚠️ Aviso: O campo "${campo}" não foi encontrado ou está vazio.`);
                     }
                 });
-                formData.append("statusDePagamento", "Aberto");
-                // Calcular a data de recebimento (e também a nova data de vencimento)
-                const dataRecebimento = calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, i); // Alterado
 
-                // Adicionar a data de recebimento ao FormData
-                //formData.set("", dataRecebimento);
+                // Calcular a data de vencimento para cada parcela
+                const dataVencimentoCalculada = calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, i);
+                formData.set("dataVencimento", dataVencimentoCalculada);
 
-                // Adicionar a data calculada também ao campo dataVencimento
-                formData.set("dataVencimento", dataRecebimento);
+                // Se dataRecebimento estiver preenchida, definir statusDePagemanto como "Concluido"
+                if (dataRecebimento && dataRecebimento.trim() !== "") {
+                    formData.set("statusDePagemanto", "Concluido");
+                    formData.set("dataRecebimento", dataRecebimento); // Usa a data informada no formulário
+                } else {
+                    // Se não houver dataRecebimento, definir como "Aberto" (ou remover se a API não exigir)
+                    formData.set("statusDePagemanto", "Aberto");
+                }
 
                 console.log("📤 Dados enviados:", Object.fromEntries(formData.entries()));
                 console.log("🔑 Token:", token);
@@ -110,7 +115,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     };
 
     processForm(formReceber, `${API_CONFIG.BASE_URL}/contaAPagar`);
-    //processForm(formReceber, "https://thecontroll.com/public/api/contaAPagar");
 });
 
 function showAlert(message, type = 'success') {
@@ -141,7 +145,7 @@ function preencherSelect(selectElement, items, valueKey, textKey) {
     }
 }
 
-function calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, parcela) { // Alterado
+function calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, parcela) {
     if (!dataVencimentoInicial) {
         console.warn("Data de vencimento inicial está vazia. Retornando null.");
         return null;
@@ -154,7 +158,7 @@ function calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, p
         return null;
     }
 
-    switch (frequenciaRecorrencia) { // Alterado
+    switch (frequenciaRecorrencia) {
         case "diaria":
             dataVencimento.setDate(dataVencimento.getDate() + parcela);
             break;
@@ -180,7 +184,7 @@ function calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, p
             dataVencimento.setFullYear(dataVencimento.getFullYear() + parcela);
             break;
         default:
-            console.warn("Frequência de recorrência desconhecida:", frequenciaRecorrencia); // Alterado
+            console.warn("Frequência de recorrência desconhecida:", frequenciaRecorrencia);
             break;
     }
 
@@ -191,6 +195,3 @@ function calcularDataRecebimento(dataVencimentoInicial, frequenciaRecorrencia, p
 
     return dataFormatada;
 }
-
-
-
