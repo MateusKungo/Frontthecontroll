@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     data-dataVencimento="${
                                       conta.dataVencimento
                                     }"
-                                    data-dataPagamento="${conta.dataPagamento}"
+                                    data-dataPagamento="${conta.dataRecebimento}"
                                     data-statusDePagamento="${
                                       conta.statusDePagemanto
                                     }">
@@ -307,26 +307,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const id = button.getAttribute("data-id");
         const editContaId = document.getElementById("edit_contaReceberId");
         if (editContaId) editContaId.value = id;
-        document.getElementById("edit_dataDocumento").value =
-          button.getAttribute("data-dataDocumento");
-        document.getElementById("edit_documento").value =
-          button.getAttribute("data-documento");
-        document.getElementById("edit_ndocumento").value =
-          button.getAttribute("data-ndocumento");
-        document.getElementById("edit_pcontas").value =
-          button.getAttribute("data-pcontas");
-        document.getElementById("edit_tipoPagamento").value =
-          button.getAttribute("data-tipoPagamento");
-        document.getElementById("edit_frequenciaRecorrencia").value =
-          button.getAttribute("data-frequenciaRecorrencia");
-        document.getElementById("edit_valor").value =
-          button.getAttribute("data-valor");
-        document.getElementById("edit_parcelas").value =
-          button.getAttribute("data-parcelas");
-        document.getElementById("edit_descricao").value =
-          button.getAttribute("data-descricao");
-        document.getElementById("edit_dataVencimento").value =
-          button.getAttribute("data-dataVencimento");
+        document.getElementById("edit_dataDocumento").value =button.getAttribute("data-dataDocumento");
+        document.getElementById("edit_documento").value =button.getAttribute("data-documento");
+        document.getElementById("edit_ndocumento").value =button.getAttribute("data-ndocumento");
+        document.getElementById("edit_pcontas").value =button.getAttribute("data-pcontas");
+        document.getElementById("edit_tipoPagamento").value =button.getAttribute("data-tipoPagamento");
+        document.getElementById("edit_frequenciaRecorrencia").value =button.getAttribute("data-frequenciaRecorrencia");
+        document.getElementById("edit_valor").value =button.getAttribute("data-valor");
+        document.getElementById("edit_parcelas").value =button.getAttribute("data-parcelas");
+        document.getElementById("edit_descricao").value =button.getAttribute("data-descricao");
+        document.getElementById("edit_dataVencimento").value =button.getAttribute("data-dataVencimento");
+        document.getElementById("edit_dataPagamento").value =button.getAttribute("data-dataPagamento");
         const editDataDocumento = document.getElementById("edit_dataDocumento");
         if (editDataDocumento)
           editDataDocumento.value = button.getAttribute("data-dataDocumento");
