@@ -2,8 +2,7 @@ import API_CONFIG from "../urlbase/url.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   function verificarStatusVencimento(dataVencimento) {
-    if (!dataVencimento)
-      return { status: "Sem data", texto: "Sem data" };
+    if (!dataVencimento) return { status: "Sem data", texto: "Sem data" };
 
     const partesData = dataVencimento.split("-");
     const dataVenc = new Date(partesData[0], partesData[1] - 1, partesData[2]);
@@ -39,7 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (diffDays > 30) {
       // Se mais de 30 dias, converte para meses
       const meses = Math.floor(diffDays / 30);
-      return `Faltam ${meses} ${meses > 1 ? "meses" : "mês"} para vencer o pagamento`;
+      return `Faltam ${meses} ${
+        meses > 1 ? "meses" : "mês"
+      } para vencer o pagamento`;
     } else {
       // Se 30 dias ou menos, exibe em dias
       return `Faltam ${diffDays} dias para vencer o pagamento`;
@@ -56,7 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
 
-      if (!response.ok) throw new Error(`Erro ao buscar subcontas: ${response.status}`);
+      if (!response.ok)
+        throw new Error(`Erro ao buscar subcontas: ${response.status}`);
       const result = await response.json();
       const subcontas = Array.isArray(result.data) ? result.data : [];
       return Object.fromEntries(subcontas.map((s) => [s.id_subconta, s.nome]));
@@ -82,7 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
         fetchSubcontas(),
       ]);
 
-      if (!contasResponse.ok) throw new Error(`Erro ao buscar contas. Status: ${contasResponse.status}`);
+      if (!contasResponse.ok)
+        throw new Error(
+          `Erro ao buscar contas. Status: ${contasResponse.status}`
+        );
       const result = await contasResponse.json();
       let contas = Array.isArray(result.data) ? result.data : [];
       contas = contas.filter((conta) => conta.state !== 1);
@@ -110,55 +115,125 @@ document.addEventListener("DOMContentLoaded", function () {
 
       grupoContas.forEach((conta, index) => {
         const numeroParcela = index + 1;
-        const statusVencimento = verificarStatusVencimento(conta.dataVencimento);
-        const diasParaVencimento = calcularDiasParaVencimento(conta.dataVencimento);
-        const statusFinal = conta.statusDePagemanto === "Concluido" ? "Concluido" : statusVencimento.status;
+        const statusVencimento = verificarStatusVencimento(
+          conta.dataVencimento
+        );
+        const diasParaVencimento = calcularDiasParaVencimento(
+          conta.dataVencimento
+        );
+        const statusFinal =
+          conta.statusDePagemanto === "Concluido"
+            ? "Concluido"
+            : statusVencimento.status;
 
-        const valorFormatado = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(parseFloat(conta.valor || 0));
+        const valorFormatado = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(parseFloat(conta.valor || 0));
         const dataVencimento = formatarData(conta.dataVencimento);
         const fornecedorNome = conta.fornecedor?.nome || "N/A";
-        const telefones = [conta.fornecedor?.telefone1, conta.fornecedor?.telefone2].filter((tel) => tel);
+        const telefones = [
+          conta.fornecedor?.telefone1,
+          conta.fornecedor?.telefone2,
+        ].filter((tel) => tel);
 
         let whatsappMessage = "";
         if (statusFinal === "Atrasado") {
-          const diffDays = Math.abs(Math.ceil((new Date(conta.dataVencimento) - new Date()) / (1000 * 60 * 60 * 24)));
+          const diffDays = Math.abs(
+            Math.ceil(
+              (new Date(conta.dataVencimento) - new Date()) /
+                (1000 * 60 * 60 * 24)
+            )
+          );
           whatsappMessage = `Olá,%20o%20pagamento%20do%20documento%20${conta.documento}%20está%20atrasado%20há%20${diffDays}%20dia(s).%20Por%20favor%20entre%20em%20contato%20para%20regularizarmos.`;
         } else if (statusFinal === "Vence hoje") {
           whatsappMessage = `Olá,%20o%20pagamento%20do%20documento%20${conta.documento}%20vence%20hoje.%20Por%20favor%20confirme%20o%20recebimento.`;
         } else if (statusFinal === "Aberto") {
-          const diffDays = Math.ceil((new Date(conta.dataVencimento) - new Date()) / (1000 * 60 * 60 * 24));
-          whatsappMessage = `Olá,%20o%20pagamento%20do%20documento%20${conta.documento}%20vence%20em%20${diffDays > 30 ? Math.floor(diffDays / 30) + " mês(es)" : diffDays + " dia(s)"}.%20Por%20favor%20confirme%20o%20recebimento.`;
+          const diffDays = Math.ceil(
+            (new Date(conta.dataVencimento) - new Date()) /
+              (1000 * 60 * 60 * 24)
+          );
+          whatsappMessage = `Olá,%20o%20pagamento%20do%20documento%20${
+            conta.documento
+          }%20vence%20em%20${
+            diffDays > 30
+              ? Math.floor(diffDays / 30) + " mês(es)"
+              : diffDays + " dia(s)"
+          }.%20Por%20favor%20confirme%20o%20recebimento.`;
         } else {
           whatsappMessage = `Olá,%20mensagem%20sobre%20o%20documento%20${conta.documento}.`;
         }
 
         const whatsappButtons = telefones.length
-          ? telefones.map((tel) => `<a href="https://wa.me/${tel}?text=${whatsappMessage}" class="btn btn-sm btn-success mx-1" target="_blank"><i class="fab fa-whatsapp"></i></a>`).join("")
+          ? telefones
+              .map(
+                (tel) =>
+                  `<a href="https://wa.me/${tel}?text=${whatsappMessage}" class="btn btn-sm btn-success mx-1" target="_blank"><i class="fab fa-whatsapp"></i></a>`
+              )
+              .join("")
           : `<span class="text-muted">Sem contato</span>`;
 
         tableRowsHtml += `
           <tr>
-            <td style="text-transform: capitalize;">${conta.idContaAPagar || "sem Informação"}</td>
-            <td style="text-transform: capitalize;">${formatarData(conta.dataDocumento)}</td>
-            <td style="text-transform: capitalize;">${conta.documento || "sem Informação"}</td>
-            <td style="text-transform: capitalize;">${conta.ndocumento || "sem Informação"}</td>
-            <td style="text-transform: capitalize;">${conta.pcontas || "sem Informação"}</td>
-            <td style="text-transform: capitalize;">${conta.projecto?.nomeProjecto || "sem Informação"}</td>
-            <td style="text-transform: capitalize;">${conta.tipoPagamento || "sem Informação"}</td>
+            <td style="text-transform: capitalize;">${
+              conta.idContaAPagar || "sem Informação"
+            }</td>
+            <td style="text-transform: capitalize;">${formatarData(
+              conta.dataDocumento
+            )}</td>
+            <td style="text-transform: capitalize;">${
+              conta.documento || "sem Informação"
+            }</td>
+            <td style="text-transform: capitalize;">${
+              conta.ndocumento || "sem Informação"
+            }</td>
+            <td style="text-transform: capitalize;">${
+              conta.pcontas || "sem Informação"
+            }</td>
+            <td style="text-transform: capitalize;">${
+              conta.projecto?.nomeProjecto || "sem Informação"
+            }</td>
+            <td style="text-transform: capitalize;">${
+              conta.tipoPagamento || "sem Informação"
+            }</td>
             <td style="text-transform: capitalize;">${fornecedorNome}</td>
-            <td style="text-transform: capitalize;">${conta.descricao || "sem Informação"}</td>
-            <td style="text-transform: capitalize;">${conta.banco?.nomeBanco || "sem Informação"}</td>
+            <td style="text-transform: capitalize;">${
+              conta.descricao || "sem Informação"
+            }</td>
+            <td style="text-transform: capitalize;">${
+              conta.banco?.nomeBanco || "sem Informação"
+            }</td>
             <td style="font-weight: bold;">${valorFormatado}</td>
-            <td style="text-transform: capitalize;">${conta.frequenciaRecorrencia || "sem Informação"}</td>
+            <td style="text-transform: capitalize;">${
+              conta.frequenciaRecorrencia || "sem Informação"
+            }</td>
             <td style="">${numeroParcela} de ${totalParcelas}</td>
             <td style="text-transform: capitalize;">${diasParaVencimento}</td>
             <td style="text-transform: capitalize;">${dataVencimento}</td>
-            <td style="text-transform: capitalize;">${formatarData(conta.dataRecebimento)}</td>
+            <td style="text-transform: capitalize;">${formatarData(
+              conta.dataRecebimento
+            )}</td>
             <td>
               <button style="
                 text-transform: capitalize;
-                background-color: ${statusFinal === "Aberto" ? "#d4edff" : statusFinal === "Atrasado" || statusFinal === "Vence hoje" ? "#ffd4d4" : statusFinal === "Concluido" ? "#d4ffdf" : "#f0f0f0"};
-                color: ${statusFinal === "Aberto" ? "#1a5a8a" : statusFinal === "Atrasado" || statusFinal === "Vence hoje" ? "#8a1a1a" : statusFinal === "Concluido" ? "#1a8a2e" : "#333"};
+                background-color: ${
+                  statusFinal === "Aberto"
+                    ? "#d4edff"
+                    : statusFinal === "Atrasado" || statusFinal === "Vence hoje"
+                    ? "#ffd4d4"
+                    : statusFinal === "Concluido"
+                    ? "#d4ffdf"
+                    : "#f0f0f0"
+                };
+                color: ${
+                  statusFinal === "Aberto"
+                    ? "#1a5a8a"
+                    : statusFinal === "Atrasado" || statusFinal === "Vence hoje"
+                    ? "#8a1a1a"
+                    : statusFinal === "Concluido"
+                    ? "#1a8a2e"
+                    : "#333"
+                };
                 border: none; padding: 6px 12px; border-radius: 4px; cursor: default; font-weight: 500; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);">
                 ${statusFinal}
               </button>
@@ -166,14 +241,24 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>
               <div class="d-flex flex-row align-items-center">
                 <a href="#" class="btn btn-sm btn-secondary mr-2 btn-edit-conta"
-                  data-id="${conta.idContaAPagar || ""}" data-dataDocumento="${conta.dataDocumento}" data-documento="${conta.documento}"
-                  data-ndocumento="${conta.ndocumento}" data-pcontas="${conta.pcontas}" data-tipoPagamento="${conta.tipoPagamento}"
-                  data-descricao="${conta.descricao}" data-valor="${conta.valor}" data-frequenciaRecorrencia="${conta.frequenciaRecorrencia}"
-                  data-parcelas="${conta.parcelas}" data-dataVencimento="${conta.dataVencimento}" data-dataPagamento="${conta.dataRecebimento}"
+                  data-id="${conta.idContaAPagar || ""}" data-dataDocumento="${
+          conta.dataDocumento
+        }" data-documento="${conta.documento}"
+                  data-ndocumento="${conta.ndocumento}" data-pcontas="${
+          conta.pcontas
+        }" data-tipoPagamento="${conta.tipoPagamento}"
+                  data-descricao="${conta.descricao}" data-valor="${
+          conta.valor
+        }" data-frequenciaRecorrencia="${conta.frequenciaRecorrencia}"
+                  data-parcelas="${conta.parcelas}" data-dataVencimento="${
+          conta.dataVencimento
+        }" data-dataPagamento="${conta.dataRecebimento}"
                   data-statusDePagamento="${conta.statusDePagemanto}">
                   <i class="fas fa-edit"></i>
                 </a>
-                <button class="btn btn-sm btn-danger btn-delete-user" data-id="${conta.idContaAPagar}">
+                <button class="btn btn-sm btn-danger btn-delete-user" data-id="${
+                  conta.idContaAPagar
+                }">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>
@@ -199,7 +284,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function formatarData(data) {
     if (!data) return "N/A";
     const partes = data.split("-");
-    return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : data;
+    return partes.length === 3
+      ? `${partes[2]}/${partes[1]}/${partes[0]}`
+      : data;
   }
 
   function addEditButtonsEvent() {
@@ -210,13 +297,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const editContaId = document.getElementById("edit_contaReceberId");
         if (editContaId) editContaId.value = id;
 
-        const fields = ["dataDocumento", "documento", "ndocumento", "pcontas", "tipoPagamento", "frequenciaRecorrencia", "valor", "parcelas", "descricao", "dataVencimento", "dataPagamento"];
+        const fields = [
+          "dataDocumento",
+          "documento",
+          "ndocumento",
+          "pcontas",
+          "tipoPagamento",
+          "frequenciaRecorrencia",
+          "valor",
+          "parcelas",
+          "descricao",
+          "dataVencimento",
+          "dataRecebimento",
+        ];
         fields.forEach((field) => {
           const element = document.getElementById(`edit_${field}`);
           if (element) element.value = button.getAttribute(`data-${field}`);
         });
 
-        const editModal = new bootstrap.Modal(document.getElementById("modalEditarContaReceber"));
+        const editModal = new bootstrap.Modal(
+          document.getElementById("modalEditarContaReceber")
+        );
         if (editModal) editModal.show();
       });
     });
@@ -261,13 +362,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const authToken = localStorage.getItem("authToken");
       if (!authToken) throw new Error("Token de autenticação não encontrado.");
 
-      const response = await fetch(`${API_CONFIG.BASE_URL}/contaAPagar/${idContaAPagar}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${API_CONFIG.BASE_URL}/contaAPagar/${idContaAPagar}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok || response.status === 204) {
         Swal.fire({
@@ -280,13 +384,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const responseData = await response.json();
-      throw new Error(responseData?.message || `Erro ao deletar conta. Status: ${response.status}`);
+      throw new Error(
+        responseData?.message ||
+          `Erro ao deletar conta. Status: ${response.status}`
+      );
     } catch (error) {
       console.error("Erro ao deletar usuário:", error);
       Swal.fire({
         icon: "error",
         title: "Erro",
-        text: error.message || "Não foi possível deletar o Lançamento. Por favor, tente novamente.",
+        text:
+          error.message ||
+          "Não foi possível deletar o Lançamento. Por favor, tente novamente.",
       });
       throw error;
     }
@@ -304,42 +413,56 @@ document.addEventListener("DOMContentLoaded", function () {
         didOpen: () => Swal.showLoading(),
       });
 
-      const idContaAPagar = document.getElementById("edit_contaReceberId")?.value;
+      const idContaAPagar = document.getElementById(
+        "edit_contaReceberId"
+      )?.value;
       const data = {
         dataDocumento: document.getElementById("edit_dataDocumento")?.value,
         documento: document.getElementById("edit_documento")?.value,
         ndocumento: document.getElementById("edit_ndocumento")?.value,
         pcontas: document.getElementById("edit_pcontas")?.value,
         tipoPagamento: document.getElementById("edit_tipoPagamento")?.value,
-        frequenciaRecorrencia: document.getElementById("edit_frequenciaRecorrencia")?.value,
+        frequenciaRecorrencia: document.getElementById(
+          "edit_frequenciaRecorrencia"
+        )?.value,
         valor: document.getElementById("edit_valor")?.value,
         parcelas: document.getElementById("edit_parcelas")?.value,
         descricao: document.getElementById("edit_descricao")?.value,
         dataVencimento: document.getElementById("edit_dataVencimento")?.value,
-        dataPagamento: document.getElementById("edit_dataPagamento")?.value,
+        dataRecebimento: document.getElementById("edit_dataRecebimento")?.value,
       };
 
       const authToken = localStorage.getItem("authToken");
 
       try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/contaAPagar/${parseInt(idContaAPagar)}`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `${API_CONFIG.BASE_URL}/contaAPagar/${parseInt(idContaAPagar)}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
 
         if (response.ok) {
-          Swal.fire({ icon: "success", title: "Sucesso!", timer: 2000, showConfirmButton: false }).then(() => location.reload());
+          Swal.fire({
+            icon: "success",
+            title: "Sucesso!",
+            timer: 2000,
+            showConfirmButton: false,
+          }).then(() => location.reload());
           fetchContasAPagar();
         } else {
           const errorData = await response.json();
           Swal.fire({
             icon: "error",
             title: "Erro",
-            text: `Erro ao atualizar a conta a pagar: ${errorData.message || "Erro desconhecido"}`,
+            text: `Erro ao atualizar a conta a pagar: ${
+              errorData.message || "Erro desconhecido"
+            }`,
           });
         }
       } catch (error) {

@@ -137,6 +137,20 @@ async function fetchProjetos() {
     }
 }
 
+// Função para salvar os valores planejados
+function savePlanejado(categoriaNome, contaNome, subcontaNome, mes, valor) {
+    const chave = `planejado_${categoriaNome}_${contaNome}_${subcontaNome}_${mes}`;
+    localStorage.setItem(chave, valor);
+    console.log(`Planejado salvo: ${chave} = ${valor}`);
+}
+
+// Função para carregar os valores planejados
+function loadPlanejado(categoriaNome, contaNome, subcontaNome, mes) {
+    const chave = `planejado_${categoriaNome}_${contaNome}_${subcontaNome}_${mes}`;
+    const valor = localStorage.getItem(chave);
+    return valor ? Number(valor) : 0;
+}
+
 // Função para criar o select de categorias
 function criarSelectCategoria(fluxoDeCaixa) {
     const tbody = document.getElementById("tabela-contas-body");
@@ -219,22 +233,33 @@ async function atualizarFluxoDeCaixa(filtroAno = null, filtroProjeto = null) {
         if (filtroProjeto) selectProjeto.value = filtroProjeto;
         console.log("Filtro de Projeto selecionado:", filtroProjeto);
 
-        // Inicializa o fluxo de caixa com 13 elementos (0 a 12), índice 0 não usado
+        // Inicializa o fluxo de caixa com "planejado" vazio
         categorias.forEach(categoria => {
-            fluxoDeCaixa[categoria.nome] = { contas: {}, total: Array(13).fill(0) };
+            fluxoDeCaixa[categoria.nome] = {
+                contas: {},
+                totalPlanejado: Array(13).fill(0),
+                totalRealizado: Array(13).fill(0)
+            };
             if (categoria.contas && categoria.contas.length > 0) {
                 categoria.contas.forEach(conta => {
-                    fluxoDeCaixa[categoria.nome].contas[conta.nome] = { subcontas: {}, total: Array(13).fill(0) };
+                    fluxoDeCaixa[categoria.nome].contas[conta.nome] = {
+                        subcontas: {},
+                        totalPlanejado: Array(13).fill(0),
+                        totalRealizado: Array(13).fill(0)
+                    };
                     if (conta.subcontas && conta.subcontas.length > 0) {
                         conta.subcontas.forEach(subconta => {
-                            fluxoDeCaixa[categoria.nome].contas[conta.nome].subcontas[subconta.nome] = Array(13).fill(0);
+                            fluxoDeCaixa[categoria.nome].contas[conta.nome].subcontas[subconta.nome] = {
+                                planejado: Array(13).fill(0), // Initialize empty
+                                realizado: Array(13).fill(0)
+                            };
                         });
                     }
                 });
             }
         });
 
-        // Processa contas a receber com base em dataRecebimento
+        // Processa contas a receber (populates "Realizado")
         contasAReceber.forEach(conta => {
             const dataRecebimento = conta.dataRecebimento && !isNaN(new Date(conta.dataRecebimento)) ? new Date(conta.dataRecebimento) : null;
             const valor = Number(conta.valor) || 0;
@@ -246,7 +271,7 @@ async function atualizarFluxoDeCaixa(filtroAno = null, filtroProjeto = null) {
             }
 
             const ano = dataRecebimento.getFullYear();
-            const mes = dataRecebimento.getMonth() + 1; // Janeiro = 1, Abril = 4, Dezembro = 12
+            const mes = dataRecebimento.getMonth() + 1;
             console.log(`Processando Receber - Data: ${conta.dataRecebimento}, Ano: ${ano}, Mês: ${mes}, Valor: ${valor}, Subconta: ${subcontaNome}, Projeto: ${conta.projectoId}`);
 
             if (!filtroAno || ano === parseInt(filtroAno)) {
@@ -254,22 +279,18 @@ async function atualizarFluxoDeCaixa(filtroAno = null, filtroProjeto = null) {
                     for (const categoriaNome in fluxoDeCaixa) {
                         for (const contaNome in fluxoDeCaixa[categoriaNome].contas) {
                             if (subcontaNome in fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas) {
-                                fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas[subcontaNome][mes] += valor;
-                                fluxoDeCaixa[categoriaNome].contas[contaNome].total[mes] += valor;
-                                fluxoDeCaixa[categoriaNome].total[mes] += valor;
-                                console.log(`Adicionado ${valor} em ${categoriaNome}/${contaNome}/${subcontaNome} no índice ${mes}`);
+                                fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas[subcontaNome].realizado[mes] += valor;
+                                fluxoDeCaixa[categoriaNome].contas[contaNome].totalRealizado[mes] += valor;
+                                fluxoDeCaixa[categoriaNome].totalRealizado[mes] += valor;
+                                console.log(`Adicionado ${valor} (Realizado) em ${categoriaNome}/${contaNome}/${subcontaNome} no índice ${mes}`);
                             }
                         }
                     }
-                } else {
-                    console.log(`Transação a Receber filtrada por projeto - Projeto: ${conta.projectoId}, Filtro: ${filtroProjeto}`);
                 }
-            } else {
-                console.log(`Transação a Receber filtrada por ano - Ano: ${ano}, Filtro: ${filtroAno}`);
             }
         });
 
-        // Processa contas a pagar com base em dataRecebimento
+        // Processa contas a pagar (populates "Realizado")
         contasAPagar.forEach(conta => {
             const dataPagamento = conta.dataRecebimento && !isNaN(new Date(conta.dataRecebimento)) ? new Date(conta.dataRecebimento) : null;
             const valor = Number(conta.valor) || 0;
@@ -281,7 +302,7 @@ async function atualizarFluxoDeCaixa(filtroAno = null, filtroProjeto = null) {
             }
 
             const ano = dataPagamento.getFullYear();
-            const mes = dataPagamento.getMonth() + 1; // Janeiro = 1, Abril = 4, Dezembro = 12
+            const mes = dataPagamento.getMonth() + 1;
             console.log(`Processando Pagar - Data: ${conta.dataRecebimento}, Ano: ${ano}, Mês: ${mes}, Valor: ${valor}, Subconta: ${subcontaNome}, Projeto: ${conta.projectoId}`);
 
             if (!filtroAno || ano === parseInt(filtroAno)) {
@@ -289,18 +310,14 @@ async function atualizarFluxoDeCaixa(filtroAno = null, filtroProjeto = null) {
                     for (const categoriaNome in fluxoDeCaixa) {
                         for (const contaNome in fluxoDeCaixa[categoriaNome].contas) {
                             if (subcontaNome in fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas) {
-                                fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas[subcontaNome][mes] -= valor;
-                                fluxoDeCaixa[categoriaNome].contas[contaNome].total[mes] -= valor;
-                                fluxoDeCaixa[categoriaNome].total[mes] -= valor;
-                                console.log(`Subtraído ${valor} em ${categoriaNome}/${contaNome}/${subcontaNome} no índice ${mes}`);
+                                fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas[subcontaNome].realizado[mes] -= valor;
+                                fluxoDeCaixa[categoriaNome].contas[contaNome].totalRealizado[mes] -= valor;
+                                fluxoDeCaixa[categoriaNome].totalRealizado[mes] -= valor;
+                                console.log(`Subtraído ${valor} (Realizado) em ${categoriaNome}/${contaNome}/${subcontaNome} no índice ${mes}`);
                             }
                         }
                     }
-                } else {
-                    console.log(`Transação a Pagar filtrada por projeto - Projeto: ${conta.projectoId}, Filtro: ${filtroProjeto}`);
                 }
-            } else {
-                console.log(`Transação a Pagar filtrada por ano - Ano: ${ano}, Filtro: ${filtroAno}`);
             }
         });
 
@@ -320,14 +337,17 @@ function preencherTabelaFluxoDeCaixa(fluxoDeCaixa) {
     const tbody = document.getElementById("tabela-contas-body");
     const fragment = document.createDocumentFragment();
 
-    // Calcular os totais mensais de entradas ou saídas para AV
-    const totaisMensais = Array(13).fill(0); // Índice 0 não usado
+    // Calcular totais mensais para AV
+    const totaisMensaisPlanejado = Array(13).fill(0);
+    const totaisMensaisRealizado = Array(13).fill(0);
     for (let mes = 1; mes <= 12; mes++) {
         for (const categoriaNome in fluxoDeCaixa) {
-            totaisMensais[mes] += fluxoDeCaixa[categoriaNome].total[mes];
+            totaisMensaisPlanejado[mes] += fluxoDeCaixa[categoriaNome].totalPlanejado[mes];
+            totaisMensaisRealizado[mes] += fluxoDeCaixa[categoriaNome].totalRealizado[mes];
         }
     }
-    console.log("Totais Mensais para AV:", totaisMensais.slice(1, 13));
+    console.log("Totais Mensais Planejado:", totaisMensaisPlanejado.slice(1, 13));
+    console.log("Totais Mensais Realizado:", totaisMensaisRealizado.slice(1, 13));
 
     for (const categoriaNome in fluxoDeCaixa) {
         const rowCategoria = document.createElement("tr");
@@ -351,20 +371,21 @@ function preencherTabelaFluxoDeCaixa(fluxoDeCaixa) {
         categoriaCell.appendChild(labelCategoria);
         rowCategoria.appendChild(categoriaCell);
 
-        const totalCategoria = fluxoDeCaixa[categoriaNome].total;
-        console.log(`Categoria ${categoriaNome} - Valores por mês:`, totalCategoria.slice(1, 13));
+        const totalPlanejadoCategoria = fluxoDeCaixa[categoriaNome].totalPlanejado;
+        const totalRealizadoCategoria = fluxoDeCaixa[categoriaNome].totalRealizado;
 
         for (let mes = 1; mes <= 12; mes++) {
-            const valor = Number(totalCategoria[mes]) || 0;
-            // AV: proporção do valor da categoria em relação ao total mensal (todas as categorias)
-            const av = totaisMensais[mes] !== 0 ? (valor / totaisMensais[mes]) * 100 : 0;
-            // AH: comparação com o mês anterior
-            const mesAnterior = mes > 1 ? totalCategoria[mes - 1] : 0;
-            const ah = mesAnterior !== 0 ? ((valor - mesAnterior) / Math.abs(mesAnterior)) * 100 : 0;
+            const planejado = Number(totalPlanejadoCategoria[mes]) || 0;
+            const realizado = Number(totalRealizadoCategoria[mes]) || 0;
+            const diffPlanejadoRealizado = planejado - realizado;
+            const realPercent = planejado !== 0 ? (realizado / planejado) * 100 : 0;
+            const avPlanejado = totaisMensaisPlanejado[mes] !== 0 ? (planejado / totaisMensaisPlanejado[mes]) * 100 : 0;
 
-            rowCategoria.appendChild(createTableCell(valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
-            rowCategoria.appendChild(createTableCell(`${av.toFixed(2)}%`));
-            rowCategoria.appendChild(createTableCell(`${ah.toFixed(2)}%`));
+            rowCategoria.appendChild(createTableCell(planejado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+            rowCategoria.appendChild(createTableCell(realizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+            rowCategoria.appendChild(createTableCell(diffPlanejadoRealizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+            rowCategoria.appendChild(createTableCell(`${realPercent.toFixed(2)}%`));
+            rowCategoria.appendChild(createTableCell(`${avPlanejado.toFixed(2)}%`));
         }
 
         fragment.appendChild(rowCategoria);
@@ -392,20 +413,21 @@ function preencherTabelaFluxoDeCaixa(fluxoDeCaixa) {
             contaCell.appendChild(labelConta);
             rowConta.appendChild(contaCell);
 
-            const totalConta = fluxoDeCaixa[categoriaNome].contas[contaNome].total;
-            console.log(`Conta ${contaNome} - Valores por mês:`, totalConta.slice(1, 13));
+            const totalPlanejadoConta = fluxoDeCaixa[categoriaNome].contas[contaNome].totalPlanejado;
+            const totalRealizadoConta = fluxoDeCaixa[categoriaNome].contas[contaNome].totalRealizado;
 
             for (let mes = 1; mes <= 12; mes++) {
-                const valor = Number(totalConta[mes]) || 0;
-                // AV: proporção do valor da conta em relação ao total da categoria no mesmo mês
-                const av = totalCategoria[mes] !== 0 ? (valor / totalCategoria[mes]) * 100 : 0;
-                // AH: comparação com o mês anterior
-                const mesAnterior = mes > 1 ? totalConta[mes - 1] : 0;
-                const ah = mesAnterior !== 0 ? ((valor - mesAnterior) / Math.abs(mesAnterior)) * 100 : 0;
+                const planejado = Number(totalPlanejadoConta[mes]) || 0;
+                const realizado = Number(totalRealizadoConta[mes]) || 0;
+                const diffPlanejadoRealizado = planejado - realizado;
+                const realPercent = planejado !== 0 ? (realizado / planejado) * 100 : 0;
+                const avPlanejado = totalPlanejadoCategoria[mes] !== 0 ? (planejado / totalPlanejadoCategoria[mes]) * 100 : 0;
 
-                rowConta.appendChild(createTableCell(valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
-                rowConta.appendChild(createTableCell(`${av.toFixed(2)}%`));
-                rowConta.appendChild(createTableCell(`${ah.toFixed(2)}%`));
+                rowConta.appendChild(createTableCell(planejado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+                rowConta.appendChild(createTableCell(realizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+                rowConta.appendChild(createTableCell(diffPlanejadoRealizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+                rowConta.appendChild(createTableCell(`${realPercent.toFixed(2)}%`));
+                rowConta.appendChild(createTableCell(`${avPlanejado.toFixed(2)}%`));
             }
 
             fragment.appendChild(rowConta);
@@ -421,19 +443,50 @@ function preencherTabelaFluxoDeCaixa(fluxoDeCaixa) {
                 rowSubconta.appendChild(subcontaCell);
 
                 const subcontaData = fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas[subcontaNome];
-                console.log(`Subconta ${subcontaNome} - Valores por mês:`, subcontaData.slice(1, 13));
 
                 for (let mes = 1; mes <= 12; mes++) {
-                    const valor = Number(subcontaData[mes]) || 0;
-                    // AV: proporção do valor da subconta em relação ao total da conta no mesmo mês
-                    const av = totalConta[mes] !== 0 ? (valor / totalConta[mes]) * 100 : 0;
-                    // AH: comparação com o mês anterior
-                    const mesAnterior = mes > 1 ? subcontaData[mes - 1] : 0;
-                    const ah = mesAnterior !== 0 ? ((valor - mesAnterior) / Math.abs(mesAnterior)) * 100 : 0;
+                    const planejado = loadPlanejado(categoriaNome, contaNome, subcontaNome, mes);
+                    const realizado = Number(subcontaData.realizado[mes]) || 0;
+                    const diffPlanejadoRealizado = planejado - realizado;
+                    const realPercent = planejado !== 0 ? (realizado / planejado) * 100 : 0;
+                    const avPlanejado = totalPlanejadoConta[mes] !== 0 ? (planejado / totalPlanejadoConta[mes]) * 100 : 0;
 
-                    rowSubconta.appendChild(createTableCell(valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
-                    rowSubconta.appendChild(createTableCell(`${av.toFixed(2)}%`));
-                    rowSubconta.appendChild(createTableCell(`${ah.toFixed(2)}%`));
+                    // Input for "Projetado" column
+                    const cellPlanejado = document.createElement("td");
+                    const inputPlanejado = document.createElement("input");
+                    inputPlanejado.type = "number";
+                    inputPlanejado.value = planejado;
+                    inputPlanejado.style.width = "100px";
+                    inputPlanejado.dataset.categoria = categoriaNome;
+                    inputPlanejado.dataset.conta = contaNome;
+                    inputPlanejado.dataset.subconta = subcontaNome;
+                    inputPlanejado.dataset.mes = mes;
+                    inputPlanejado.addEventListener("change", (e) => {
+                        const novoValor = Number(e.target.value) || 0;
+                        subcontaData.planejado[mes] = novoValor;
+                        savePlanejado(categoriaNome, contaNome, subcontaNome, mes, novoValor);
+
+                        // Update totals
+                        totalPlanejadoConta[mes] = 0;
+                        for (const sub in fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas) {
+                            totalPlanejadoConta[mes] += fluxoDeCaixa[categoriaNome].contas[contaNome].subcontas[sub].planejado[mes];
+                        }
+                        totalPlanejadoCategoria[mes] = 0;
+                        for (const c in fluxoDeCaixa[categoriaNome].contas) {
+                            totalPlanejadoCategoria[mes] += fluxoDeCaixa[categoriaNome].contas[c].totalPlanejado[mes];
+                        }
+
+                        // Re-render table
+                        preencherTabelaFluxoDeCaixa(fluxoDeCaixa);
+                    });
+                    cellPlanejado.appendChild(inputPlanejado);
+                    rowSubconta.appendChild(cellPlanejado);
+
+                    // Static "Realizado" column
+                    rowSubconta.appendChild(createTableCell(realizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+                    rowSubconta.appendChild(createTableCell(diffPlanejadoRealizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })));
+                    rowSubconta.appendChild(createTableCell(`${realPercent.toFixed(2)}%`));
+                    rowSubconta.appendChild(createTableCell(`${avPlanejado.toFixed(2)}%`));
                 }
 
                 fragment.appendChild(rowSubconta);
@@ -474,7 +527,7 @@ function createTableCell(content) {
 
 // Configuração do filtro
 document.addEventListener('DOMContentLoaded', () => {
-    atualizarFluxoDeCaixa(); // Carrega sem filtro inicial
+    atualizarFluxoDeCaixa();
 
     const btnFiltrar = document.getElementById("btnFiltrar");
     btnFiltrar.addEventListener("click", () => {
