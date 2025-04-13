@@ -17,51 +17,42 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Função para buscar dados da API
+// Função para buscar dados da API
 async function buscarDados(apiUrl) {
     try {
         console.log(`🔍 Buscando dados da API: ${apiUrl}`);
-
         const response = await fetch(apiUrl, {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
-                "Content-Type": "application/json"
-            }
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                "Content-Type": "application/json",
+            },
         });
 
-        console.log(`🔄 Resposta da API (${apiUrl}): ${response.status} - ${response.statusText}`);
-
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.statusText}`);
-        }
-
+        console.log(`🔄 Resposta: ${response.status} - ${response.statusText}`);
+        if (!response.ok) throw new Error(`Erro na requisição: ${response.statusText}`);
         const data = await response.json();
-        console.log(`📊 Dados recebidos (${apiUrl}):`, data);
-
-        return data.data ?? data; // Caso a resposta venha dentro de { data: [...] }
+        console.log(`📊 Dados recebidos:`, data);
+        return data.data ?? data;
     } catch (error) {
         console.error(`❌ Erro ao buscar dados de ${apiUrl}:`, error);
         return [];
     }
 }
 
-// Função para preencher um select
+// Função genérica para preencher selects
 function preencherSelect(selectElement, data, campoId, campoNome) {
-    console.log(`🎯 Preenchendo select #${selectElement.id} com`, data.length, "itens.");
-
     selectElement.innerHTML = '<option value="">Selecione</option>';
-
-    if (data.length === 0) {
-        console.warn(`⚠️ Nenhum dado encontrado para preencher #${selectElement.id}`);
+    if (!data.length) {
+        console.warn(`⚠️ Nenhum dado para preencher #${selectElement.id}`);
+        return;
     }
-
-    data.forEach(item => {
+    data.forEach((item) => {
         const option = document.createElement("option");
         option.value = item[campoId];
         option.textContent = item[campoNome];
         selectElement.appendChild(option);
     });
-
     console.log(`✅ Select #${selectElement.id} preenchido.`);
 }
 

@@ -63,10 +63,10 @@ function populateTable(clients) {
         return;
     }
 
-    clientes.forEach(client => {
+    clientes.forEach((client,index) => {
         const row = `
             <tr>
-                <td>${client.id}</td>
+                <td>#00${index+1}</td>
                 <td>${client.nome}</td>
                 <td>${client.endereco || "Não informado"}</td>
                 <td>${client.cidade || "Não informado"}</td>

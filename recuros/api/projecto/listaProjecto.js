@@ -50,10 +50,10 @@ function populateTable(projectos) {
     // Filter out projects with state === 1
     const activeProjectos = projectos.filter(projecto => projecto.state !== 1);
 
-    activeProjectos.forEach((projecto) => {
+    activeProjectos.forEach((projecto, index) => {
         const row = `
             <tr>
-                <td>${projecto.id}</td>
+                <td>#00${index+1}</td>
                 <td>${projecto.nomeProjecto || "Não informado"}</td>
                 <td>${projecto.descricaoProjecto || "Não informado"}</td>
                 <td>

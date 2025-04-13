@@ -60,10 +60,10 @@ function populateBancosTable(bancos) {
         }
     }
 
-    activeBanks.forEach((banco) => {
+    activeBanks.forEach((banco, index) => {
         const row = `
             <tr>
-                <td>${banco.id}</td>
+                <td>#00${index+1}</td>
                 <td>${banco.nomeBanco}</td>
                 <td>${moedaPrincipal} ${parseFloat(banco.valorConta).toFixed(2)}</td>
 

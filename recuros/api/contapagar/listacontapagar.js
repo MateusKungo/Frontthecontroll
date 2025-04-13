@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const contasAgrupadas = agruparContas(contas, "documento");
     let tableRowsHtml = "";
-
+    let index2=0
     for (const documento in contasAgrupadas) {
       const grupoContas = contasAgrupadas[documento];
       const totalParcelas = grupoContas.length;
@@ -175,8 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         tableRowsHtml += `
           <tr>
-            <td style="text-transform: capitalize;">${
-              conta.idContaAPagar || "sem Informação"
+            <td style="text-transform: capitalize;">#00${index+1 || "sem Informação"
             }</td>
             <td style="text-transform: capitalize;">${formatarData(
               conta.dataDocumento

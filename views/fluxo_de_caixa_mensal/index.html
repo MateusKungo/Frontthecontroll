@@ -174,12 +174,22 @@
                                     <i class="fa fa-file-alt"></i>
                                     <span>Relatórios</span>
                                 </a>
-                                <ul class="collapse">
-                                    <li class="active"><a href="../fluxo_de_caixa_mensal/index.html"><i
-                                                class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
-                                    <li class="active"><a href="../comparador/index.html"><i
-                                                class="fa fa-wallet mr-2"></i>
-                                            Comparador</a></li>
+                                    <ul class="collapse">
+                                        <li class="active"><a href="./index.html"><i
+                                                    class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
+                                        <li class="active"><a href="../comparador/index.html"><i
+                                                    class="fa fa-wallet mr-2"></i>
+                                                Comparador</a></li>
+                                        <li class="active">
+                                            <a href="../dre/index.html">
+                                                <i class="fa fa-coins mr-2"></i>DRR
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="../planejamento/index.html">
+                                                <i class="fa fa-calendar-alt mr-2"></i>Planejamento
+                                            </a>
+                                        </li>
                                 </ul>
                             </li>
                             <!--  <li>
@@ -286,13 +296,18 @@
                                 </div>
                                 <div class="col-md-2">
                                     <span>Tipo de Relatório</span>
-                                    <select id="tipo-relatorio" class="form-control">
-                                        <option value="Projetado">Projetado</option>
-                                        <option value="Realizado" selected>Realizado</option>
-                                    </select>
+                                    <fieldset class="d-flex align-items-center flex-row justify-content-center border p-2">
+                                        <label for="tipo-relatorio0" class="mr-3 my-0">
+                                            <input type="radio" name="tipo-relatorio" id="tipo-relatorio0" value="Projetado">
+                                            Projetado
+                                        </label>
+                                        <label for="tipo-relatorio" class="mr-3 my-0">
+                                            <input type="radio" name="tipo-relatorio" id="tipo-relatorio" value="Realizado" checked>
+                                            Realizado
+                                        </label>
+                                    </fieldset>
                                 </div>
-                                <button type="button" class="btn btn-primary" id="btnFiltrar">Filtrar</button>
-                            </div>
+                                <button type="button" class="btn btn-primary mt-3 id="btnFiltrar" style="width: 120px; height: 45px;">Filtrar</button>                            </div>
                             
                         </div>
                         <div class="table-responsive">

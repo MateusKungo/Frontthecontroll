@@ -1,5 +1,44 @@
 import API_CONFIG from "../urlbase/url.js";
 
+// Função para buscar dados da API
+async function buscarDados(apiUrl) {
+    try {
+        console.log(`🔍 Buscando dados da API: ${apiUrl}`);
+        const response = await fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        console.log(`🔄 Resposta: ${response.status} - ${response.statusText}`);
+        if (!response.ok) throw new Error(`Erro na requisição: ${response.statusText}`);
+        const data = await response.json();
+        console.log(`📊 Dados recebidos:`, data);
+        return data.data ?? data;
+    } catch (error) {
+        console.error(`❌ Erro ao buscar dados de ${apiUrl}:`, error);
+        return [];
+    }
+}
+
+// Função genérica para preencher selects
+function preencherSelect(selectElement, data, campoId, campoNome) {
+    selectElement.innerHTML = '<option value="">Selecione</option>';
+    if (!data.length) {
+        console.warn(`⚠️ Nenhum dado para preencher #${selectElement.id}`);
+        return;
+    }
+    data.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item[campoId];
+        option.textContent = item[campoNome];
+        selectElement.appendChild(option);
+    });
+    console.log(`✅ Select #${selectElement.id} preenchido.`);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     async function fetchSubcontas() {
         try {
@@ -105,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const contasAgrupadas = agruparContas(contas, "documento");
         let tableRowsHtml = "";
-
+        let index2=0
         for (const documento in contasAgrupadas) {
             const grupoContas = contasAgrupadas[documento];
             const totalParcelas = grupoContas.length;
@@ -147,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 tableRowsHtml += `
                     <tr>
-                        <td style="text-transform: capitalize;">${conta.idContaAReceber || "sem Informação"}</td>
+                        <td style="text-transform: capitalize;">#00${++index2 || "sem Informação"}</td>
                         <td style="text-transform: capitalize;">${formatarData(conta.dataDocumento)}</td>
                         <td style="text-transform: capitalize;">${conta.documento || "sem Informação"}</td>
                         <td style="text-transform: capitalize;">${conta.ndocumento || "sem Informação"}</td>
@@ -189,6 +228,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                     data-documento="${conta.documento}"
                                     data-ndocumento="${conta.ndocumento}"
                                     data-pcontas="${conta.pcontas}"
+                                    data-projectoId="${conta.projectoId}"
+                                    data-clienteId="${conta.clienteId}"
+                                    data-recebidoPeloBancoId="${conta.recebidoPeloBancoId}"
                                     data-tipoPagamento="${conta.tipoPagamento}"
                                     data-descricao="${conta.descricao}"
                                     data-valor="${conta.valor}"
@@ -208,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             });
         }
-
+        console.log(contas)
         tableBody.innerHTML = tableRowsHtml;
         addEditButtonsEvent();
         addDeleteButtonsEvent();
@@ -231,13 +273,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function addEditButtonsEvent() {
         document.querySelectorAll(".btn-edit-conta").forEach((button) => {
-            button.addEventListener("click", (event) => {
+            button.addEventListener("click", async (event) => {
                 event.preventDefault();
+                
+                // Preencher os campos básicos
                 document.getElementById("edit_contaReceberId").value = button.getAttribute("data-id");
                 document.getElementById("edit_dataDocumento").value = button.getAttribute("data-dataDocumento");
                 document.getElementById("edit_documento").value = button.getAttribute("data-documento");
                 document.getElementById("edit_ndocumento").value = button.getAttribute("data-ndocumento");
-                document.getElementById("edit_pcontas").value = button.getAttribute("data-pcontas");
                 document.getElementById("edit_tipoPagamento").value = button.getAttribute("data-tipoPagamento");
                 document.getElementById("edit_frequenciaRecorrencia").value = button.getAttribute("data-frequenciaRecorrencia");
                 document.getElementById("edit_valor").value = button.getAttribute("data-valor");
@@ -246,8 +289,43 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("edit_dataVencimento").value = button.getAttribute("data-dataVencimento");
                 document.getElementById("edit_dataRecebimento").value = button.getAttribute("data-dataRecebimento");
 
-                const editModal = new bootstrap.Modal(document.getElementById("modalEditarContaReceber"));
-                editModal.show();
+                // Carregar e preencher os selects
+                try {
+                    // Carregar plano de contas
+                    const subcontas = await buscarDados(`${API_CONFIG.BASE_URL}/subconta`);
+                    const subcontasFiltradas = subcontas.filter(subconta => subconta.state === "0" || subconta.state === 0);
+                    preencherSelect(document.getElementById("edit_pcontas"), subcontasFiltradas, "id_subconta", "nome");
+                    document.getElementById("edit_pcontas").value = button.getAttribute("data-pcontas");
+
+                    // Carregar clientes
+                    const clientes = await buscarDados(`${API_CONFIG.BASE_URL}/cadastro-geral`);
+                    const clientesFiltrados = clientes.filter(cliente => cliente.tipo_usuario === "cliente" && (cliente.state === 0 || cliente.state === "0"));
+                    preencherSelect(document.getElementById("edit_clienteId"), clientesFiltrados, "id", "nome");
+                    document.getElementById("edit_clienteId").value = button.getAttribute("data-clienteId");
+
+                    // Carregar projetos
+                    const projetos = await buscarDados(`${API_CONFIG.BASE_URL}/cadastro-de-projectos`);
+                    const projetosFiltrados = projetos.filter(projeto => projeto.state === "0" || projeto.state === 0);
+                    preencherSelect(document.getElementById("edit_projectoId"), projetosFiltrados, "id", "nomeProjecto");
+                    document.getElementById("edit_projectoId").value = button.getAttribute("data-projectoId");
+
+                    // Carregar bancos
+                    const bancos = await buscarDados(`${API_CONFIG.BASE_URL}/cadastro-de-bancos`);
+                    const bancosFiltrados = bancos.filter(banco => banco.state === "0" || banco.state === 0);
+                    preencherSelect(document.getElementById("edit_recebidoPeloBancoId"), bancosFiltrados, "id", "nomeBanco");
+                    document.getElementById("edit_recebidoPeloBancoId").value = button.getAttribute("data-recebidoPeloBancoId");
+
+                    // Abrir o modal após carregar todos os dados
+                    const editModal = new bootstrap.Modal(document.getElementById("modalEditarContaReceber"));
+                    editModal.show();
+                } catch (error) {
+                    console.error("Erro ao carregar dados para edição:", error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Erro",
+                        text: "Não foi possível carregar os dados para edição. Por favor, tente novamente.",
+                    });
+                }
             });
         });
     }

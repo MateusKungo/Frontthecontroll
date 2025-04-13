@@ -140,9 +140,9 @@ document.getElementById("formTransferencia").addEventListener("submit", async fu
             icon: "success",
             title: "Sucesso!",
             text: "Transferência registrada com comprovante",
-            timer: 2000
+           // timer: 2000
         });
-        location.reload();
+        //location.reload();
 
     } catch (error) {
         console.error("Erro completo:", error);

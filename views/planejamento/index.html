@@ -180,6 +180,16 @@
                                     <li class="active"><a href="../comparador/index.html"><i
                                                 class="fa fa-wallet mr-2"></i>
                                             Comparador</a></li>
+                                    <li class="active">
+                                        <a href="../dre/index.html">
+                                            <i class="fa fa-coins mr-2"></i>DRR
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="../planejamento/index.html">
+                                            <i class="fa fa-calendar-alt mr-2"></i>Planejamento
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <!--  <li>
@@ -283,17 +293,20 @@
                                 </div>
                                 <div class="col-md-2">
                                     <span>Tipo de Relatório</span>
-                                    <select id="tipo-relatorio" class="form-control">
-                                        <option value="Projetado">Projetado</option>
-                                        <option value="Realizado" selected>Realizado</option>
-                                    </select>
+                                    <fieldset class="d-flex align-items-center flex-row justify-content-center border p-2">
+                                        <label for="tipo-relatorio0" class="mr-3 my-0">Projetado
+                                             <input type="radio" name="tipo-relatorio" id="tipo-relatorio0" value="Projetado">
+                                        </label>
+                                        <label for="tipo-relatorio" class="mr-3 my-0">Realizado
+                                            <input type="radio" name="tipo-relatorio" id="tipo-relatorio" value="Realizado" checked>
+                                        </label>
+                                    </fieldset>
                                 </div>
-                                <button type="button" class="btn btn-primary" id="btnFiltrar">Filtrar</button>
+                                <button type="button" class="btn btn-primary mt-3 id="btnFiltrar" style="width: 120px; height: 45px;">Filtrar</button>
                             </div>
 
                         </div>
                         <div class="table-responsive">
-                            <button id="salvar-projetado" class="btn btn-primary mb-2">Salvar Planejamento</button>
                             <table id="idfluxocaixa" class="text-letf table table-bordered table-striped table-hover">
                                 <thead>
                                     <tr>

@@ -179,8 +179,6 @@ function carregarCategorias() {
                     </div>
                     <!-- Botões de Ação Categoria -->
                     <div class="action-buttons d-flex gap-1 flex-shrink-0">
-                        <button class="btn btn-sm btn-outline-secondary btn-editar-categoria" title="Editar Categoria" data-id="${categoria.idCategoriaDeConta}"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-sm btn-outline-danger btn-remover-categoria" title="Remover Categoria" data-id="${categoria.idCategoriaDeConta}"><i class="fas fa-trash"></i></button>
                         <button class="btn btn-sm btn-outline-primary btn-adicionar-conta" title="Adicionar Conta" data-id="${categoria.idCategoriaDeConta}"><i class="fas fa-plus"></i> Conta</button>
                     </div>
                 </div>
@@ -573,7 +571,7 @@ function abrirModalConta(categoriaId) {
         </div>
         <div class="mb-3">
             <label for="tipoNovaConta" class="form-label">Tipo</label>
-            <select class="form-select" id="tipoNovaConta">
+            <select class="form-control" id="tipoNovaConta">
                 <option value="Entradas" selected>Entrada</option>
                 <option value="Saídas">Saída</option>
             </select>

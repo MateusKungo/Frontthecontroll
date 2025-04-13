@@ -49,10 +49,10 @@ function populateTable(tiposPagamento) {
     // Filtrar tipos ativos (state !== 1)
     const activeTipos = tiposPagamento.filter(tipo => tipo.state !== 1);
 
-    activeTipos.forEach((tipo) => {
+    activeTipos.forEach((tipo,index) => {
         const row = `
             <tr>
-                <td>${tipo.id}</td>
+                <td>#00${index+1}</td>
                 <td>${tipo.nome || "Não informado"}</td>
                 <td>${tipo.descricao || "Não informado"}</td>
                 <td>

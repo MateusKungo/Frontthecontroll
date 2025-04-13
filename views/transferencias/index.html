@@ -122,6 +122,16 @@
                                     <li class="active"><a href="../comparador/index.html"><i
                                                 class="fa fa-wallet mr-2"></i>
                                             Comparador</a></li>
+                                    <li class="active">
+                                        <a href="../dre/index.html">
+                                            <i class="fa fa-coins mr-2"></i>DRR
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="../planejamento/index.html">
+                                            <i class="fa fa-calendar-alt mr-2"></i>Planejamento
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <!--  <li>
@@ -306,8 +316,69 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade editTransfer">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title text-uppercase"><i class="fa fa-random mr-md-2"></i>Transferência</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <form class="modal-body col-12">
+                        <div class="form-group">
+                            <h6 class="mb-2 text-secondary text-uppercase">Data de Transferência</h6>
+                            <input type="date" class="form-control" required id="dataTransferencia">
+                        </div>
+                        <div class="form-group">
+                            <h6 class="mb-2 text-secondary text-uppercase">Banco Origem</h6>
+                            <select id="saiuNoBanco" class="form-control" required>
+                                <option value="" value="" disabled selected>Selecione </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="mb-2 text-secondary text-uppercase">Banco Destino</h6>
+                            <select id="entrouNoBanco" class="form-control" required>
+                                <option value="" value="" disabled selected>Selecione</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="text-secondary mb-2 text-uppercase">Descrição</h6>
+                            <textarea class="form-control" rows="3" placeholder="Descrição" id="descricao"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="text-secondary mb-2 text-uppercase">Valor da Transferência</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="valorTransferencia"
+                                    placeholder="Valor da Conta" min="0" required>
+                                <div class="input-group-append">
+                                    <span class="input-group btn btn-secondary">R$</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="text-secondary mb-2 text-uppercase">Comprovante da Transferência</h6>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="ComprovativoTransferencia"
+                                    placeholder="Valor da Conta" min="0" accept="image/*,.pdf,.doc,.docx">
+                                <div class="input-group-append">
+                                    <span class="input-group btn btn-secondary"><i
+                                            class="fas fa-file-upload"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-lightsbtn" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-secondary">Salvar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
+
+    
     <!-- page container area end -->
+    
     <!-- offset area start -->
     <div class="offset-area">
         <div class="offset-close"><i class="ti-close"></i></div>
