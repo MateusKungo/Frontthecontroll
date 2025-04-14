@@ -1,10 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fluxo de Caixa- Thecontroll</title>
+    <title>DRE - Thecontroll</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="../../recuros/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="../../recuros/assets/css/bootstrap.min.css">
@@ -14,22 +13,17 @@
     <link rel="stylesheet" href="../../recuros/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../recuros/assets/css/slicknav.min.css">
     <!-- amcharts css -->
-
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
-        media="all" />
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <!-- Start datatable css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
     <!-- style css -->
     <link rel="stylesheet" href="../../recuros/assets/css/typography.css">
     <link rel="stylesheet" href="../../recuros/assets/css/default-css.css">
     <link rel="stylesheet" href="../../recuros/assets/css/styles.css">
     <link rel="stylesheet" href="../../recuros/header/style.css">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../recuros/assets/css/responsive.css">
     <link rel="stylesheet" href="../../recuros/assetsstyle/table.css">
@@ -40,62 +34,43 @@
         body {
             font-family: Arial, sans-serif;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
         }
-
         tr:nth-child(1) th {
             padding: 8px;
             color: #1a1717;
-
         }
-
         tr:nth-child(2) th {
             padding: 8px;
             border: 1px solid #ccc;
         }
-
         th.totalano {
             background-color: #0069D9;
             color: white;
-
         }
-
         thead th {
             background-color: #f5f5f5;
             text-align: center;
         }
-
         .subcategory {
             background-color: #f9f9f9;
         }
-
         .fade-in {
             animation: fadeIn 0.3s ease-in-out;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-
         .category {
             cursor: pointer;
             padding: 8px;
-            /* Espaçamento interno */
         }
-
         .category i {
             transition: transform 0.2s ease-in-out;
         }
-
         .category i.fa-minus-circle {
             transform: rotate(180deg);
         }
@@ -104,15 +79,18 @@
 
 <body>
     <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- preloader area start -->
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Preloader Area Start -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
+    <!-- Preloader Area End -->
+
+    <!-- Page Container Area Start -->
     <div class="page-container">
+        <!-- Sidebar Menu Start -->
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
@@ -127,99 +105,56 @@
                                 <a href="../../painel.html" aria-expanded="true">
                                     <i class="fa fa-tachometer-alt"></i><span>Painel</span>
                                 </a>
-
                             </li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true">
                                     <i class="fa fa-address-book"></i><span>Cadastro</span>
                                 </a>
                                 <ul class="collapse">
-                                    <li><a href="../projetos/index.html"><i class="fa fa-file-alt mr-2"></i>Projetos</a>
-                                    </li>
-                                    <li><a href="../plano_de_planos/planos-de-contas.html"><i
-                                                class="fa fa-university mr-2"></i>Plano
-                                            de
-                                            Contas</a></li>
-                                    <li><a href="../clinetes/index.html"><i class="fa fa-users mr-2"></i>Clientes</a>
-                                    </li>
-                                    <li><a href="../fornecedores/index.html"><i
-                                                class="fa fa-truck mr-2"></i>Fornecedores</a>
-                                    </li>
-                                    <li><a href="../meus_bancos/index.html"><i class="fa fa-university mr-2"></i>Contas
-                                            Bancárias</a></li>
-                                    <li><a href="../meio_de_pagamento/index.html"><i
-                                                class="fa fa-credit-card mr-2"></i>Meios de Pagamento</a></li>
+                                    <li><a href="../projetos/index.html"><i class="fa fa-file-alt mr-2"></i>Projetos</a></li>
+                                    <li><a href="../plano_de_planos/planos-de-contas.html"><i class="fa fa-university mr-2"></i>Plano de Contas</a></li>
+                                    <li><a href="../clinetes/index.html"><i class="fa fa-users mr-2"></i>Clientes</a></li>
+                                    <li><a href="../fornecedores/index.html"><i class="fa fa-truck mr-2"></i>Fornecedores</a></li>
+                                    <li><a href="../meus_bancos/index.html"><i class="fa fa-university mr-2"></i>Contas Bancárias</a></li>
+                                    <li><a href="../meio_de_pagamento/index.html"><i class="fa fa-credit-card mr-2"></i>Meios de Pagamento</a></li>
                                 </ul>
                             </li>
-
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true">
                                     <i class="fa fa-file-invoice-dollar"></i><span>Lançamentos</span>
                                 </a>
                                 <ul class="collapse">
-                                    <li><a href="../contas_a_receber/index.html"><i
-                                                class="fa fa-arrow-circle-down mr-2"></i>Contas
-                                            a Receber</a></li>
-                                    <li><a href="../conta_a_pagar/index.html"><i class="fa fa-arrow-circle-up mr-2"></i>
-                                            Contas a Pagar</a></li>
-
-                                    <li><a href="../transferencias/index.html"><i
-                                                class="fa fa-random mr-2"></i>Transferências</a>
-                                    </li>
-
+                                    <li><a href="../contas_a_receber/index.html"><i class="fa fa-arrow-circle-down mr-2"></i>Contas a Receber</a></li>
+                                    <li><a href="../conta_a_pagar/index.html"><i class="fa fa-arrow-circle-up mr-2"></i>Contas a Pagar</a></li>
+                                    <li><a href="../transferencias/index.html"><i class="fa fa-random mr-2"></i>Transferências</a></li>
                                 </ul>
                             </li>
-                            <li class="">
+                            <li>
                                 <a href="javascript:void(0)" aria-expanded="true">
-                                    <i class="fa fa-file-alt"></i>
-                                    <span>Relatórios</span>
+                                    <i class="fa fa-file-alt"></i><span>Relatórios</span>
                                 </a>
-                                    <ul class="collapse">
-                                        <li class="active"><a href="../fluxo_de_caixa_mensal/index.html"><i
-                                                    class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
-                                        <li class="active"><a href="../comparador/index.html"><i
-                                                    class="fa fa-wallet mr-2"></i>
-                                                Comparador</a></li>
-                                        <li class="active">
-                                            <a href="./index.html">
-                                                <i class="fa fa-coins mr-2"></i>DRR
-                                            </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="../planejamento/index.html">
-                                                <i class="fa fa-calendar-alt mr-2"></i>Planejamento
-                                            </a>
-                                        </li>
+                                <ul class="collapse">
+                                    <li class="active"><a href="../fluxo_de_caixa_mensal/index.html"><i class="fa fa-money-bill-wave mr-2"></i>Fluxo de Caixa Mensal</a></li>
+                                    <li class="active"><a href="../comparador/index.html"><i class="fa fa-wallet mr-2"></i>Comparador</a></li>
+                                    <li class="active"><a href="./index.html"><i class="fa fa-coins mr-2"></i>DRR</a></li>
+                                    <li class="active"><a href="../planejamento/index.html"><i class="fa fa-calendar-alt mr-2"></i>Planejamento</a></li>
                                 </ul>
                             </li>
-                            <!--  <li>
-                                <a href="javascript:void(0)" aria-expanded="true">
-                                    <i class="fa fa-exchange-alt mr-1"></i>
-                                    <span>Conciliação Bancária</span>
-                                </a>
-                            </li> -->
-                            <!--   <li>
-                                <a href="javascript:void(0)" aria-expanded="true">
-                                    <i class="fa fa-chart-line mr-1"></i>
-                                    <span>Planejamento Financeiro</span>
-                                </a>
-                            </li> -->
                             <li>
                                 <a href="../perfil/index.html" aria-expanded="true">
                                     <i class="fa fa-users"></i><span>Perfil</span>
                                 </a>
-
                             </li>
-
-
-
-
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
+        <!-- Sidebar Menu End -->
+
+        <!-- Main Content Start -->
         <div class="main-content">
+            <!-- Header Area Start -->
             <div class="header-area">
                 <div class="row align-items-center">
                     <div class="col-md-6 col-sm-8 clearfix">
@@ -231,10 +166,9 @@
                     </div>
                     <div class="col-md-6 col-sm-4 clearfix">
                         <ul class="notification-area pull-right">
-                            <li class="">
+                            <li>
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button"
-                                        data-toggle="dropdown">
+                                    <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button" data-toggle="dropdown">
                                         <div class="avatar-circle">
                                             <span class="initials" id="userInitials"></span>
                                         </div>
@@ -259,56 +193,65 @@
                     </div>
                 </div>
             </div>
+            <!-- Header Area End -->
+
+            <!-- Page Title Area Start -->
             <div class="page-title-area">
                 <div class="row justify-content-end align-items-center">
                     <div class="col-12">
                         <div class="row justify-content-end align-items-center mt-3 d-flex">
-
+                            <!-- Empty div for alignment -->
                         </div>
                     </div>
                 </div>
-
                 <div class="row align-items-center">
                     <div class="col-sm-12">
-                        <div class="breadcrumbs-area clearfix p-3 ">
-                            <h4 class="page-title pull-left text-uppercase">Fluxo de Caixa Mensal</h4>
-
+                        <div class="breadcrumbs-area clearfix p-3">
+                            <h4 class="page-title pull-left text-uppercase">DRE</h4>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-            <!-- page title area end -->
+            <!-- Page Title Area End -->
+
+            <!-- Main Content Inner Start -->
             <div class="main-content-inner">
                 <div class="card col-12 mt-2">
-                    
                     <div class="card-body">
+                        <!-- Filters Start -->
                         <div class="col-12 mb-4">
-                            <div class="row align-items-center" >
+                            <div class="row align-items-end">
                                 <div class="col-md-2">
-                                    <span>Seleciona um Ano</span>
+                                    <span>Selecione um Ano</span>
                                     <select id="country-code-ano" class="form-control"></select>
                                 </div>
                                 <div class="col-md-2">
-                                    <span>Seleciona um Projeto</span>
+                                    <span>Selecione um Projeto</span>
                                     <select class="form-control" id="projectoId" name="projectoId" required></select>
                                 </div>
                                 <div class="col-md-2">
                                     <span>Tipo de Relatório</span>
-                                    <fieldset class="d-flex align-items-center flex-row justify-content-center border p-2">
-                                        <label for="tipo-relatorio0" class="mr-3 my-0">Projetado
-                                             <input type="radio" name="tipo-relatorio" id="tipo-relatorio0" value="Projetado">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" checked>
+                                        <label class="form-check-label" for="radioDefault1">
+                                          Realizado
                                         </label>
-                                        <label for="tipo-relatorio" class="mr-3 my-0">Realizado
-                                            <input type="radio" name="tipo-relatorio" id="tipo-relatorio" value="Realizado" checked>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2">
+                                        <label class="form-check-label" for="radioDefault2">
+                                          Projetado
                                         </label>
-                                    </fieldset>
+                                      </div>
                                 </div>
-                                <button type="button" class="btn btn-primary mt-3 id="btnFiltrar" style="width: 120px; height: 45px;">Filtrar</button>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary mt-3" id="btnFiltrar" style="width: 120px; height: 45px;">Filtrar</button>
+                                </div>
                             </div>
-                            
                         </div>
+                        <!-- Filters End -->
+
+                        <!-- Table Start -->
                         <div class="table-responsive">
                             <table id="idfluxocaixa" class="text-left table table-bordered table-striped table-hover">
                                 <thead>
@@ -357,19 +300,17 @@
                                 <tbody id="tabela-contas-body"></tbody>
                             </table>
                         </div>
-
-
+                        <!-- Table End -->
                     </div>
                 </div>
-
-
-
             </div>
+            <!-- Main Content Inner End -->
         </div>
-
+        <!-- Main Content End -->
     </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
+    <!-- Page Container Area End -->
+
+    <!-- Offset Area Start -->
     <div class="offset-area">
         <div class="offset-close"><i class="ti-close"></i></div>
         <ul class="nav offset-menu-tab">
@@ -377,13 +318,12 @@
             <li><a data-toggle="tab" href="#settings">Settings</a></li>
         </ul>
         <div class="offset-content tab-content">
-
         </div>
     </div>
-    <!-- offset area end -->
-    <!-- jquery latest version -->
+    <!-- Offset Area End -->
+
+    <!-- JavaScript Libraries -->
     <script src="../../recuros/assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- Bootstrap 4 JS -->
     <script src="../../recuros/assets/js/popper.min.js"></script>
     <script src="../../recuros/assets/js/bootstrap.min.js"></script>
     <script src="../../recuros/assets/js/owl.carousel.min.js"></script>
@@ -391,58 +331,24 @@
     <script src="../../recuros/assets/js/jquery.slimscroll.min.js"></script>
     <script src="../../recuros/assetsassets/js/jquery.slicknav.min.js"></script>
 
-
-    <!-- Start datatable js -->
+    <!-- Start DataTable JS -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-    <!-- others plugins -->
+
+    <!-- Other Plugins -->
     <script src="../../recuros/assets/js/plugins.js"></script>
     <script src="../../recuros/assets/js/scripts.js"></script>
     <script src="../../recuros/header/script.js"></script>
     <script src="../../recuros/assets/js/custom.js"></script>
     <script src="../../recuros/api/fluxodecaixa/fluxodecaixa.js" type="module"></script>
+
+    <!-- DataTable Initialization -->
    
 
-
-
-    <script>
-        $(document).ready(function () {
-            if ($.fn.DataTable.isDataTable('#dataTable3')) {
-                $('#dataTable3').DataTable().destroy();
-            }
-
-            $('#dataTable3').DataTable({
-                language: {
-                    decimal: ",",
-                    thousands: ".",
-                    lengthMenu: "Mostrar _MENU_ registros por página",
-                    zeroRecords: "Nenhum registro encontrado",
-                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
-                    infoFiltered: "(filtrado de _MAX_ registros no total)",
-                    search: "Pesquisar:",
-                    paginate: {
-                        first: "Primeiro",
-                        last: "Último",
-                        next: "Próximo",
-                        previous: "Anterior"
-                    }
-                },
-                columnDefs: [{
-                    orderable: false,
-                    targets: '_all'
-                } // Desativa a ordenação para todas as colunas
-                ]
-            });
-
-            // Remover as classes de ordenação após inicializar o DataTable
-            $('#dataTable3 th').removeClass('sorting sorting_asc sorting_desc');
-        });
-    </script>
-
+    <!-- Category Toggle Script -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             function toggleSubcontas(category) {
@@ -459,38 +365,27 @@
             }
 
             function generateOrderedList() {
-                let count = 1; // Contador para categorias
-                let subCount = {}; // Objeto para contar as subcontas dentro de cada categoria
+                let count = 1;
+                let subCount = {};
 
-                // Enumerando categorias
                 document.querySelectorAll(".category").forEach(category => {
                     const categoryId = category.dataset.category;
                     const firstCell = category.querySelector("td:first-child");
-
-                    // Define o número da categoria no texto
-                    firstCell.innerHTML =
-                        `<i class="fa fa-plus-circle"></i> ${count}. ${firstCell.innerText.trim().replace(/^\d+\.\s/, '')}`;
-
-                    subCount[categoryId] = 1; // Inicia contador de subcontas para esta categoria
-                    count++; // Incrementa a contagem das categorias
+                    firstCell.innerHTML = `<i class="fa fa-plus-circle"></i> ${count}. ${firstCell.innerText.trim().replace(/^\d+\.\s/, '')}`;
+                    subCount[categoryId] = 1;
+                    count++;
                 });
 
-                // Enumerando subcategorias (subcontas)
                 document.querySelectorAll(".subcategory").forEach(subconta => {
                     const parentId = subconta.dataset.parent;
                     if (subCount[parentId] !== undefined) {
                         const firstCell = subconta.querySelector("td:first-child");
-
-                        // Define o número da subconta no texto
-                        firstCell.innerHTML =
-                            `${parentId}.${subCount[parentId]} ${firstCell.innerText.trim().replace(/^\d+\.\d+\s/, '')}`;
-
-                        subCount[parentId]++; // Incrementa a contagem das subcontas
+                        firstCell.innerHTML = `${parentId}.${subCount[parentId]} ${firstCell.innerText.trim().replace(/^\d+\.\d+\s/, '')}`;
+                        subCount[parentId]++;
                     }
                 });
             }
 
-            // Adicionando eventos para expandir/recolher categorias ao clicar
             document.querySelectorAll(".category").forEach(category => {
                 category.addEventListener("click", function (e) {
                     e.preventDefault();
@@ -498,9 +393,8 @@
                 });
             });
 
-            generateOrderedList(); // Gera a numeração ao carregar a página
+            generateOrderedList();
         });
     </script>
 </body>
-
 </html>

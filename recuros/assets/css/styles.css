@@ -653,7 +653,7 @@ body {
     top: 50%;
     width: 4px;
     height: 36px;
-    background: var(--primary-color);
+    background: #303641;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
 }

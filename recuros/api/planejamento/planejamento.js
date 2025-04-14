@@ -459,6 +459,7 @@ function preencherTabelaFluxoDeCaixa(fluxoDeCaixa) {
                     inputPlanejado.style.width = "100px";
                     inputPlanejado.dataset.categoria = categoriaNome;
                     inputPlanejado.dataset.conta = contaNome;
+                    inputPlanejado.className = "form-control";
                     inputPlanejado.dataset.subconta = subcontaNome;
                     inputPlanejado.dataset.mes = mes;
                     inputPlanejado.addEventListener("change", (e) => {
